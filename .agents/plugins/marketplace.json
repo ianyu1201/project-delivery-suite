@@ -1,0 +1,20 @@
+{
+  "name": "ai-project-delivery-suite",
+  "interface": {
+    "displayName": "AI Project Delivery Suite"
+  },
+  "plugins": [
+    {
+      "name": "ai-project-delivery-suite",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ai-project-delivery-suite"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

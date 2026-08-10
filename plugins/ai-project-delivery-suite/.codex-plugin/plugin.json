@@ -1,0 +1,34 @@
+{
+  "name": "ai-project-delivery-suite",
+  "version": "0.1.0",
+  "description": "One installation for AI project delivery orchestration and governed project-version consolidation.",
+  "author": {
+    "name": "ianyu1201",
+    "url": "https://github.com/ianyu1201"
+  },
+  "homepage": "https://github.com/ianyu1201/ai-project-delivery-suite",
+  "repository": "https://github.com/ianyu1201/ai-project-delivery-suite",
+  "license": "MIT",
+  "keywords": [
+    "project-delivery",
+    "version-governance",
+    "prd",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AI Project Delivery Suite",
+    "shortDescription": "Project delivery and version governance in one install.",
+    "longDescription": "Starts and coordinates AI-built projects, then delegates multi-version PRD, code, issue, candidate, and historical-folder governance to a dedicated companion Skill.",
+    "developerName": "ianyu1201",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "帮我启动并治理这个 AI 项目。",
+      "整合当前项目的历史版本并生成完整下一版。"
+    ]
+  }
+}

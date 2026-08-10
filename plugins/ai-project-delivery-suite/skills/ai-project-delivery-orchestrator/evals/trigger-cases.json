@@ -1,0 +1,25 @@
+{
+  "skill": "ai-project-delivery-orchestrator",
+  "cases": [
+    {
+      "query": "我只有一个想法，请帮我建立项目并安排 Codex 开发流程。",
+      "should_trigger": true
+    },
+    {
+      "query": "项目有 V1、V2、V3，请统筹 PRD 整合、完整下一版、开发对话、独立验收和历史归档。",
+      "should_trigger": true
+    },
+    {
+      "query": "为已固结的候选提交创建独立验收任务。",
+      "should_trigger": true
+    },
+    {
+      "query": "解释这个 Python 函数。",
+      "should_trigger": false
+    },
+    {
+      "query": "只把一个旧文件夹永久删除。",
+      "should_trigger": false
+    }
+  ]
+}

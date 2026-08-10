@@ -1,0 +1,47 @@
+name: Bundle CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bundle-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate bundle (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate plugin bundle
+        run: python -B scripts/validate_bundle.py
+      - name: Compile Python files
+        run: |
+          python -B -m compileall -q scripts plugins/ai-project-delivery-suite/skills
+      - name: Test delivery orchestrator
+        run: |
+          python -B -m unittest discover \
+            -s plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts \
+            -p 'test_*.py' -v
+      - name: Test version consolidator
+        run: |
+          python -B -m unittest discover \
+            -s plugins/ai-project-delivery-suite/skills/consolidate-project-versions/scripts \
+            -p 'test_*.py' -v
+      - name: Smoke-test CLIs
+        run: |
+          python plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/project_snapshot.py --help >/dev/null
+          python plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/scaffold_delivery.py --help >/dev/null
+          python plugins/ai-project-delivery-suite/skills/consolidate-project-versions/scripts/audit_versions.py --help >/dev/null
