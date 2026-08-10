@@ -20,7 +20,6 @@ def load_json(path: Path) -> object:
 def main() -> int:
     manifest = load_json(PLUGIN / ".codex-plugin" / "plugin.json")
     marketplace = load_json(ROOT / ".agents" / "plugins" / "marketplace.json")
-    upstreams = load_json(ROOT / "UPSTREAMS.json")
     assert manifest["name"] == "ai-project-delivery-suite"
     assert re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", manifest["version"])
     assert manifest["license"] == "MIT"
@@ -31,8 +30,8 @@ def main() -> int:
         text = (skill_root / "SKILL.md").read_text(encoding="utf-8")
         assert text.startswith("---\n")
         assert f"name: {name}" in text.split("---", 2)[1]
-        commit = upstreams["skills"][name]["commit"]
-        assert re.fullmatch(r"[0-9a-f]{7,40}", commit)
+        assert (skill_root / "README.md").is_file()
+        assert (skill_root / "LICENSE").is_file()
     assert (ROOT / "LICENSE").read_text(encoding="utf-8").startswith("MIT License")
     return 0
 

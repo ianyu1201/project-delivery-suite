@@ -65,8 +65,8 @@
 
 | Skill | 定位 | 主要负责 | 不负责 |
 |---|---|---|---|
-| [`ai-project-delivery-orchestrator`](https://github.com/ianyu1201/ai-project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
-| [`consolidate-project-versions`](https://github.com/ianyu1201/consolidate-project-versions) | 专业版本治理器 | 历史版本审计、PRD 冲突、Issue 延续、完整代码候选、版本一致性验证和全部前序版本归档 | 不负责项目全生命周期对话，不自动删除、上传、部署或访问生产数据库 |
+| [`ai-project-delivery-orchestrator`](plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
+| [`consolidate-project-versions`](plugins/ai-project-delivery-suite/skills/consolidate-project-versions) | 专业版本治理器 | 历史版本审计、PRD 冲突、Issue 延续、完整代码候选、版本一致性验证和全部前序版本归档 | 不负责项目全生命周期对话，不自动删除、上传、部署或访问生产数据库 |
 
 两者不是 Git 主分支与功能分支的关系，而是两个独立维护、独立测试、协同运行的 Skill。
 
@@ -312,26 +312,25 @@ plugins/ai-project-delivery-suite/
     ai-project-delivery-orchestrator/     主控 Skill 快照
     consolidate-project-versions/         版本治理 Skill 快照
 scripts/
-  sync_from_upstreams.py                  从权威仓库同步 Skill
   validate_bundle.py                      组合包结构校验
-UPSTREAMS.json                            上游仓库和精确提交
 install.sh                                安装脚本
 ```
 
-## 源码权威与贡献方式
+## 单一源码与贡献方式
 
-组合仓库是经过验证的分发快照。两个 Skill 的权威开发仓库分别是：
+本仓库是两个 Skill 和组合插件的唯一活跃源码仓库：
 
-- <https://github.com/ianyu1201/ai-project-delivery-orchestrator>
-- <https://github.com/ianyu1201/consolidate-project-versions>
+- 主控源码：[`plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator`](plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator)
+- 版本治理源码：[`plugins/ai-project-delivery-suite/skills/consolidate-project-versions`](plugins/ai-project-delivery-suite/skills/consolidate-project-versions)
+- 插件清单：[`plugins/ai-project-delivery-suite/.codex-plugin/plugin.json`](plugins/ai-project-delivery-suite/.codex-plugin/plugin.json)
 
-功能修改应先进入对应权威仓库并通过其 CI，再通过 `scripts/sync_from_upstreams.py` 更新组合包及 `UPSTREAMS.json`。不要只修改组合包中的副本，否则下次同步时会被权威版本替换。
+功能修改直接提交到本仓库中对应的 Skill 子目录，并由同一个 PR 同步更新插件说明、测试和必要文档。原 `ai-project-delivery-orchestrator` 与 `consolidate-project-versions` 仓库仅作为只读历史保留，不再接受功能更新。
 
 ## 测试与质量门禁
 
 每个 PR 和 `main` 更新都会在 Python 3.11、3.13 上执行：
 
-- 插件清单、市场入口、MIT License 和上游提交记录校验；
+- 插件清单、市场入口、MIT License 和两个 Skill 目录校验；
 - 两个 Skill 的 Python 编译检查；
 - 主控脚本单元测试；
 - 版本审计器单元测试；
@@ -343,7 +342,7 @@ install.sh                                安装脚本
 
 ### 用户还需要分别下载两个 Skill 吗？
 
-不需要。安装本组合插件后，两个 Skill 会同时出现在插件缓存中。单独仓库主要用于权威开发、审计和独立发布。
+不需要。安装本组合插件后，两个 Skill 会同时出现在插件缓存中。原来的两个独立仓库已经迁移到本单仓库结构，仅作为只读历史和旧链接入口保留。
 
 ### 会自动把项目上传到 GitHub 吗？
 
