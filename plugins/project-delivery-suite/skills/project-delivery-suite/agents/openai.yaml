@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Delivery Suite"
+  short_description: "一个入口完成项目交付、语义保真、版本治理、会话与历史归档"
+  default_prompt: "使用 $project-delivery-suite 先只读识别项目、版本拓扑、当前阶段和已批准硬约束；在任何写入前给出方案，并在归档或下游交接前验证语义覆盖。"

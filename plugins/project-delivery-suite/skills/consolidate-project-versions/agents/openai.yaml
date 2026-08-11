@@ -1,7 +1,0 @@
-interface:
-  display_name: "项目版本整合治理"
-  short_description: "整合 PRD、Issue 和完整代码，按生命周期归档全部前序版本"
-  default_prompt: "使用 $consolidate-project-versions 先只读盘点现有版本、五类根路径、命名、PRD、Issue 和代码并提出治理方案；仅在明确授权后创建完整候选，在其批准后按编号式全生命周期架构归档全部前序版本，不上传、不移入废纸篓、不删除。"
-
-policy:
-  allow_implicit_invocation: false
