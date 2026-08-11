@@ -1,6 +1,6 @@
 # AI Project Delivery Orchestrator
 
-[![Bundle CI](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml)
+[![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 面向非专业开发者和 AI 协作团队的 Codex 项目交付总控 Skill。它把模糊想法或既有项目组织成可以审计、分阶段推进并独立验收的软件交付流程。
@@ -59,11 +59,11 @@ ai-project-delivery-orchestrator
 推荐安装组合包，一次获得两个 Skill：
 
 ```bash
-codex plugin marketplace add ianyu1201/ai-project-delivery-suite
-codex plugin add ai-project-delivery-suite@ai-project-delivery-suite
+codex plugin marketplace add ianyu1201/project-delivery-suite
+codex plugin add project-delivery-suite@project-delivery-suite
 ```
 
-组合包仓库：<https://github.com/ianyu1201/ai-project-delivery-suite>
+组合包仓库：<https://github.com/ianyu1201/project-delivery-suite>
 
 如果只安装本 Skill，项目启动、建档和交付编排仍可使用；但跨版本 PRD、完整代码候选和历史版本归档能力不可用。
 

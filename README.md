@@ -1,6 +1,6 @@
-# AI Project Delivery Suite
+# Project Delivery Suite
 
-[![Bundle CI](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml)
+[![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![Python 3.11 / 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.13-blue.svg)](.github/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -65,8 +65,8 @@
 
 | Skill | 定位 | 主要负责 | 不负责 |
 |---|---|---|---|
-| [`ai-project-delivery-orchestrator`](plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
-| [`consolidate-project-versions`](plugins/ai-project-delivery-suite/skills/consolidate-project-versions) | 专业版本治理器 | 历史版本审计、PRD 冲突、Issue 延续、完整代码候选、版本一致性验证和全部前序版本归档 | 不负责项目全生命周期对话，不自动删除、上传、部署或访问生产数据库 |
+| [`ai-project-delivery-orchestrator`](plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
+| [`consolidate-project-versions`](plugins/project-delivery-suite/skills/consolidate-project-versions) | 专业版本治理器 | 历史版本审计、PRD 冲突、Issue 延续、完整代码候选、版本一致性验证和全部前序版本归档 | 不负责项目全生命周期对话，不自动删除、上传、部署或访问生产数据库 |
 
 两者不是 Git 主分支与功能分支的关系，而是两个独立维护、独立测试、协同运行的 Skill。
 
@@ -217,8 +217,8 @@ Skill 优先复用项目已有结构。没有现有约定时，可以提议 NOTE
 ### 推荐：通过插件市场安装
 
 ```bash
-codex plugin marketplace add ianyu1201/ai-project-delivery-suite
-codex plugin add ai-project-delivery-suite@ai-project-delivery-suite
+codex plugin marketplace add ianyu1201/project-delivery-suite
+codex plugin add project-delivery-suite@project-delivery-suite
 ```
 
 这只安装一个插件，但插件中同时包含两个 Skill。安装完成后请新建一个 Codex 任务，让新 Skill 被加载。
@@ -226,8 +226,8 @@ codex plugin add ai-project-delivery-suite@ai-project-delivery-suite
 ### 使用安装脚本
 
 ```bash
-git clone https://github.com/ianyu1201/ai-project-delivery-suite.git
-cd ai-project-delivery-suite
+git clone https://github.com/ianyu1201/project-delivery-suite.git
+cd project-delivery-suite
 ./install.sh
 ```
 
@@ -242,21 +242,34 @@ codex plugin list --json
 输出中应出现：
 
 ```text
-ai-project-delivery-suite@ai-project-delivery-suite
+project-delivery-suite@project-delivery-suite
 ```
+
+### 从旧名称迁移
+
+`0.2.0` 及更早版本使用 `AI Project Delivery Suite` / `ai-project-delivery-suite`。技术标识已在 `0.3.0` 统一改为 `Project Delivery Suite` / `project-delivery-suite`。已经安装旧版本的用户执行：
+
+```bash
+codex plugin remove ai-project-delivery-suite@ai-project-delivery-suite
+codex plugin marketplace remove ai-project-delivery-suite
+codex plugin marketplace add ianyu1201/project-delivery-suite
+codex plugin add project-delivery-suite@project-delivery-suite
+```
+
+GitHub 旧仓库地址会自动跳转到新地址，但 Codex 本地插件标识不会自动改名，因此需要执行一次上述迁移。
 
 ## 升级和卸载
 
 刷新 GitHub 市场快照：
 
 ```bash
-codex plugin marketplace upgrade ai-project-delivery-suite
+codex plugin marketplace upgrade project-delivery-suite
 ```
 
 卸载组合插件：
 
 ```bash
-codex plugin remove ai-project-delivery-suite@ai-project-delivery-suite
+codex plugin remove project-delivery-suite@project-delivery-suite
 ```
 
 升级或重新安装后，请新建 Codex 任务，避免旧任务继续使用已缓存的 Skill 内容。
@@ -306,7 +319,7 @@ Skill 会先说明已确认事实、推断、缺口和拟执行动作。默认�
 
 ```text
 .agents/plugins/marketplace.json          Codex 插件市场入口
-plugins/ai-project-delivery-suite/
+plugins/project-delivery-suite/
   .codex-plugin/plugin.json               插件清单
   skills/
     ai-project-delivery-orchestrator/     主控 Skill 快照
@@ -320,9 +333,9 @@ install.sh                                安装脚本
 
 本仓库是两个 Skill 和组合插件的唯一活跃源码仓库：
 
-- 主控源码：[`plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator`](plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator)
-- 版本治理源码：[`plugins/ai-project-delivery-suite/skills/consolidate-project-versions`](plugins/ai-project-delivery-suite/skills/consolidate-project-versions)
-- 插件清单：[`plugins/ai-project-delivery-suite/.codex-plugin/plugin.json`](plugins/ai-project-delivery-suite/.codex-plugin/plugin.json)
+- 主控源码：[`plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator`](plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator)
+- 版本治理源码：[`plugins/project-delivery-suite/skills/consolidate-project-versions`](plugins/project-delivery-suite/skills/consolidate-project-versions)
+- 插件清单：[`plugins/project-delivery-suite/.codex-plugin/plugin.json`](plugins/project-delivery-suite/.codex-plugin/plugin.json)
 
 功能修改直接提交到本仓库中对应的 Skill 子目录，并由同一个 PR 同步更新插件说明、测试和必要文档。原 `ai-project-delivery-orchestrator` 与 `consolidate-project-versions` 仓库仅作为只读历史保留，不再接受功能更新。
 

@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLUGIN = ROOT / "plugins" / "ai-project-delivery-suite"
+PLUGIN = ROOT / "plugins" / "project-delivery-suite"
 SKILL_NAMES = ("ai-project-delivery-orchestrator", "consolidate-project-versions")
 
 
@@ -20,11 +20,11 @@ def load_json(path: Path) -> object:
 def main() -> int:
     manifest = load_json(PLUGIN / ".codex-plugin" / "plugin.json")
     marketplace = load_json(ROOT / ".agents" / "plugins" / "marketplace.json")
-    assert manifest["name"] == "ai-project-delivery-suite"
+    assert manifest["name"] == "project-delivery-suite"
     assert re.fullmatch(r"\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?", manifest["version"])
     assert manifest["license"] == "MIT"
     assert marketplace["plugins"][0]["name"] == manifest["name"]
-    assert marketplace["plugins"][0]["source"]["path"] == "./plugins/ai-project-delivery-suite"
+    assert marketplace["plugins"][0]["source"]["path"] == "./plugins/project-delivery-suite"
     for name in SKILL_NAMES:
         skill_root = PLUGIN / "skills" / name
         text = (skill_root / "SKILL.md").read_text(encoding="utf-8")

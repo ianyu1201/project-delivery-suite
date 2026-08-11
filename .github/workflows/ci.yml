@@ -29,19 +29,19 @@ jobs:
         run: python -B scripts/validate_bundle.py
       - name: Compile Python files
         run: |
-          python -B -m compileall -q scripts plugins/ai-project-delivery-suite/skills
+          python -B -m compileall -q scripts plugins/project-delivery-suite/skills
       - name: Test delivery orchestrator
         run: |
           python -B -m unittest discover \
-            -s plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts \
+            -s plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts \
             -p 'test_*.py' -v
       - name: Test version consolidator
         run: |
           python -B -m unittest discover \
-            -s plugins/ai-project-delivery-suite/skills/consolidate-project-versions/scripts \
+            -s plugins/project-delivery-suite/skills/consolidate-project-versions/scripts \
             -p 'test_*.py' -v
       - name: Smoke-test CLIs
         run: |
-          python plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/project_snapshot.py --help >/dev/null
-          python plugins/ai-project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/scaffold_delivery.py --help >/dev/null
-          python plugins/ai-project-delivery-suite/skills/consolidate-project-versions/scripts/audit_versions.py --help >/dev/null
+          python plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/project_snapshot.py --help >/dev/null
+          python plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator/scripts/scaffold_delivery.py --help >/dev/null
+          python plugins/project-delivery-suite/skills/consolidate-project-versions/scripts/audit_versions.py --help >/dev/null

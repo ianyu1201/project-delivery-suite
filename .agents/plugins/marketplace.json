@@ -1,14 +1,14 @@
 {
-  "name": "ai-project-delivery-suite",
+  "name": "project-delivery-suite",
   "interface": {
-    "displayName": "AI Project Delivery Suite"
+    "displayName": "Project Delivery Suite"
   },
   "plugins": [
     {
-      "name": "ai-project-delivery-suite",
+      "name": "project-delivery-suite",
       "source": {
         "source": "local",
-        "path": "./plugins/ai-project-delivery-suite"
+        "path": "./plugins/project-delivery-suite"
       },
       "policy": {
         "installation": "AVAILABLE",

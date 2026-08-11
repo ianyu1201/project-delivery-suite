@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-marketplace_url="https://github.com/ianyu1201/ai-project-delivery-suite"
-plugin_ref="ai-project-delivery-suite@ai-project-delivery-suite"
+marketplace_url="https://github.com/ianyu1201/project-delivery-suite"
+plugin_ref="project-delivery-suite@project-delivery-suite"
 
 if ! command -v codex >/dev/null 2>&1; then
   echo "Codex CLI is required before installing this plugin." >&2
