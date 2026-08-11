@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目交付总控"
+  short_description: "项目启动、版本治理、开发对话、独立验收与历史归档全流程总控"
+  default_prompt: "使用 $project-delivery-orchestrator 先只读识别我的项目、版本拓扑和当前阶段，按需协调专业能力，并在任何实际变更前给出方案。"

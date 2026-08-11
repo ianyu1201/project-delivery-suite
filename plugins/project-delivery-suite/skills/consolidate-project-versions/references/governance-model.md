@@ -76,7 +76,7 @@ A candidate is safe to materialize only when:
 
 Never represent a branch, patch, partial tree, failed copy, or destination merged with prior content as a complete new version. Do not duplicate nested `.git` directories by default; decide repository topology explicitly.
 
-When an `ai-project-delivery-orchestrator` flow owns lifecycle coordination, return control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, and validation plan. The orchestrator owns development chats and independent acceptance; this Skill resumes for conformance reconciliation, version approval state, and archival. A direct invocation may implement authorized gaps, but two coordinators must never write the candidate concurrently.
+When a `project-delivery-orchestrator` flow owns lifecycle coordination, return control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, and validation plan. The orchestrator owns development chats and independent acceptance; this Skill resumes for conformance reconciliation, version approval state, and archival. A direct invocation may implement authorized gaps, but two coordinators must never write the candidate concurrently.
 
 ## 5. Requirements, code, and issues
 

@@ -41,7 +41,7 @@ V4/              唯一活动版本：最终 PRD + 活动 Issue + 完整代码
 
 ## 与主控 Skill 的关系
 
-`ai-project-delivery-orchestrator` 是用户入口和项目生命周期总控；本 Skill 是版本目录治理的专业执行器。
+`project-delivery-orchestrator` 是用户入口和项目生命周期总控；本 Skill 是版本目录治理的专业执行器。
 
 协同时，本 Skill 负责命名、PRD/Issue 整合和完整候选物化，然后把候选路径、来源谱系、治理周期、PRD 状态和验证计划交回主控。主控负责后续开发对话和独立验收；本 Skill 最后复核一致性并归档全部前序版本。
 
