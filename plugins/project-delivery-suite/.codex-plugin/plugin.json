@@ -1,7 +1,7 @@
 {
   "name": "project-delivery-suite",
-  "version": "0.6.0",
-  "description": "One installation for AI project delivery orchestration and governed project-version consolidation.",
+  "version": "0.7.0",
+  "description": "One Skill for AI project delivery, semantic constraint preservation, and governed version consolidation.",
   "author": {
     "name": "ianyu1201",
     "url": "https://github.com/ianyu1201"
@@ -18,8 +18,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Project Delivery Suite",
-    "shortDescription": "Project delivery and version governance in one install.",
-    "longDescription": "Starts and coordinates AI-built projects, then delegates multi-version PRD, code, issue, candidate, and historical-folder governance to a dedicated companion Skill.",
+    "shortDescription": "One Skill for project delivery and version governance.",
+    "longDescription": "Routes project delivery and multi-version governance through two internal modules, preserving approved semantic constraints before handoff or archival.",
     "developerName": "ianyu1201",
     "category": "Productivity",
     "capabilities": [

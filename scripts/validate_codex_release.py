@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the Codex plugin and both bundled Skill release versions."""
+"""Validate the Codex plugin and its single bundled Skill release version."""
 
 from __future__ import annotations
 
@@ -20,8 +20,7 @@ def main() -> int:
     observed = {
         "canonical": canonical,
         "codex_plugin": manifest["version"],
-        "orchestrator_snapshot": (PLUGIN / "skills" / "project-delivery-orchestrator" / "VERSION").read_text(encoding="utf-8").strip(),
-        "consolidator_snapshot": (PLUGIN / "skills" / "consolidate-project-versions" / "VERSION").read_text(encoding="utf-8").strip(),
+        "skill_snapshot": (PLUGIN / "skills" / "project-delivery-suite" / "VERSION").read_text(encoding="utf-8").strip(),
     }
     mismatches = {name: value for name, value in observed.items() if value != canonical}
     assert not mismatches, f"release version drift: {mismatches}"

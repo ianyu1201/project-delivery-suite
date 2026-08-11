@@ -29,10 +29,20 @@
 | 工作包 | 目标 | 拥有文件/模块 | 只读依赖 | 禁止修改 | 验收 |
 |---|---|---|---|---|---|
 
+## 语义边界快照
+
+- `frozen_constraints`：
+- `allowed_changes`：
+- `prohibited_changes`：
+- `open_decisions`：
+- `source_authority`：
+- `semantic_coverage_status`：必须为 `semantic_coverage_passed`
+
 ## 实施规则
 
 - 开工前复述目标、范围、关键合同、禁止事项和验证方式。
 - 发现文档冲突、缺少确认视觉或需要改变产品合同，停止实施并回报。
+- 未明确列入 `allowed_changes` 的结构、导航、入口、组件几何、业务行为和平台技术约束不得改变。
 - 只在 `active_version_root` 内修改候选代码；历史归档只读且不得用作现役需求。
 - 验证失败时继续当前 `active_candidate`，不自行创建下一版本目录。
 - 按依赖波次委派；共享文件由集成负责人拥有。

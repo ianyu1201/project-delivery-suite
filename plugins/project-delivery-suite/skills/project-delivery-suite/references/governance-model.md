@@ -10,7 +10,8 @@
 6. Regenerable and sensitive data
 7. Numbered lifecycle archive and storage
 8. Optional remote recovery
-9. Closure matrix
+9. Semantic constraint preservation
+10. Closure matrix
 
 ## 1. Naming and lifecycle
 
@@ -76,7 +77,7 @@ A candidate is safe to materialize only when:
 
 Never represent a branch, patch, partial tree, failed copy, or destination merged with prior content as a complete new version. Do not duplicate nested `.git` directories by default; decide repository topology explicitly.
 
-When a `project-delivery-orchestrator` flow owns lifecycle coordination, return control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, and validation plan. The orchestrator owns development chats and independent acceptance; this Skill resumes for conformance reconciliation, version approval state, and archival. A direct invocation may implement authorized gaps, but two coordinators must never write the candidate concurrently.
+When the delivery-orchestration module owns lifecycle coordination, the version-governance module returns control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, semantic coverage status, boundary snapshot, and validation plan. The delivery module owns development chats and independent acceptance; version governance resumes for conformance reconciliation, version approval state, and archival. The two internal modules must never write the candidate concurrently.
 
 ## 5. Requirements, code, and issues
 
@@ -141,7 +142,15 @@ Offer a destination once and accept a decline. Never auto-create, publish, commi
 - compare it under the same policy;
 - preserve hosted Issues separately because ordinary Git history does not contain them.
 
-## 9. Closure matrix
+## 9. Semantic constraint preservation
+
+After authority classification and before replacing or archiving any approved source, inventory every material approved constraint. Record stable ID, original text, source/version/authority, category, scope, impact, change policy, target authority file, disposition, and evidence.
+
+Allowed dispositions are only `preserved`, `relocated`, `explicitly_superseded`, and `unresolved`. A silent omission, newer draft, archive move, or generalized restatement is not supersession. When PRD scope is narrowed to product what/why, relocate platform, compatibility, proprietary technology, implementation, and runtime acceptance constraints to an engineering contract or ADR.
+
+Generate the downstream boundary snapshot (`frozen_constraints`, `allowed_changes`, `prohibited_changes`, `open_decisions`, `source_authority`) and validate the structured result with `validate_semantic_coverage.py`. Keep the matrix temporary unless the project already has an equivalent artifact. Any status other than `semantic_coverage_passed` blocks deauthorization, archival, downstream handoff, and `anti-drift enforced`.
+
+## 10. Closure matrix
 
 | Area | Closed when |
 |---|---|
@@ -150,8 +159,9 @@ Offer a destination once and accept a decline. Never auto-create, publish, commi
 | Issues | Every prior issue is verified-closed, carried forward, or dispositioned with evidence |
 | Candidate | A non-overwriting staged copy matches its manifest and contains all required reproducible inputs |
 | Code | Requirement and reverse-scope checks pass; applicable safe commands pass |
-| Archive | Every predecessor version in the governed series is non-authoritative, moved to the authorized archive, and verified with exact move and link checks |
-| Anti-drift | Existing AI entrypoint routes to current PRD, or limitation is reported |
+| Semantic coverage | Every approved hard constraint is preserved, relocated, explicitly superseded, or visibly unresolved; the mechanical gate passes |
+| Archive | Semantic coverage passes; every predecessor version is moved to the authorized archive and verified with exact move and link checks |
+| Anti-drift | One active entry exists, semantic coverage passes, key frozen constraints are discoverable, and downstream boundary snapshots are attached |
 | Remote | User declined with known risk, or fresh recovery matches manifests |
 | Storage | Regenerable, sensitive, unknown, and archived content are classified without deletion or reclaimed-space claims |
 

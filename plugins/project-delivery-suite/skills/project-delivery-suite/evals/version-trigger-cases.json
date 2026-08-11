@@ -1,5 +1,5 @@
 {
-  "skill": "consolidate-project-versions",
+  "skill": "project-delivery-suite",
   "cases": [
     {
       "query": "我有 V1、V2、V3 三套项目，PRD 和代码互相冲突，想整理成可继续开发的一套完整版本。",

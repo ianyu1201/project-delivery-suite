@@ -2,9 +2,9 @@
 
 ## 1. 职责边界
 
-`project-delivery-orchestrator` 是用户入口和生命周期总控，负责项目建档、阶段门禁、Codex 对话、开发编排、独立验收和项目状态。
+`project-delivery-suite` 是唯一 Skill 和用户入口。其项目交付总控模块负责项目建档、阶段门禁、Codex 对话、开发编排、独立验收和项目状态。
 
-`consolidate-project-versions` 是版本目录治理器，独占以下决定和动作：
+同一 Skill 内的版本治理模块独占以下决定和动作：
 
 - 识别 `latest_observed / current_approved / active_candidate`；
 - 沿用项目规则确定下一版本名称；
@@ -12,7 +12,7 @@
 - 在失败后继续修复同一 `active_candidate`；
 - 新版本批准后将治理系列的全部前序版本移入历史归档。
 
-总控不得并行创建第二个候选目录，也不得在版本治理尚未返回候选路径时启动开发对话。因该 Skill 默认禁止隐式触发，总控在用户需求命中此流程后明确告知用户，再显式加载 `$consolidate-project-versions`。
+总控模块不得并行创建第二个候选目录，也不得在版本治理模块尚未返回候选路径时启动开发对话。内部路由不加载第二个 Skill ID，但必须明确报告模块切换和交接状态。
 
 ## 2. 五类路径身份
 
@@ -108,6 +108,9 @@ acceptance_status
 version_approval_status
 archive_status
 anti_drift_status
+semantic_coverage_status
+constraint_coverage_evidence
+boundary_snapshot_status
 ```
 
 不为这些字段另建一份治理文档。
@@ -116,12 +119,13 @@ anti_drift_status
 
 1. 总控完成入口、范围和项目身份锁定。
 2. 版本治理只读盘点，返回拓扑、当前批准版本和命名提案。
-3. 用户或授权产品负责人批准唯一候选 PRD。
-4. 版本治理在唯一 staging 中物化完整候选，通过 manifest 后提升并返回 `candidate_materialized`。
-5. 总控在已提升候选根目录中启动开发、测试和独立验收。
-6. 失败时修复同一候选，不增版。
-7. 独立验收通过后由授权者单独批准版本。
-8. 版本治理只在此后将全部前序版本移入授权的历史归档。
-9. 总控更新全局指针、下一周期起点和对话状态。
+3. 版本治理盘点旧批准硬约束，完成跨文档路由并运行语义覆盖门禁。
+4. 用户或授权产品负责人批准唯一候选 PRD；其他工程/设计约束由对应 authority 文件承载。
+5. 版本治理在唯一 staging 中物化完整候选，通过 manifest 后提升并返回 `candidate_materialized`。
+6. 总控只在 `semantic_coverage_passed` 且边界快照附带后启动开发、测试和独立验收。
+7. 失败时修复同一候选，不增版。
+8. 独立验收通过后由授权者单独批准版本。
+9. 版本治理只在版本批准且语义覆盖仍通过后归档全部前序版本。
+10. 总控更新全局指针、下一周期起点和对话状态。
 
-历史归档只负责组织和去权威化，不声称释放空间。两个 Skill 都不移入 Trash、不永久删除、不清空废纸篓；用户需要释放空间时自行处理已归档内容。
+历史归档只负责组织和去权威化，不声称释放空间。本 Skill 的两个模块都不移入 Trash、不永久删除、不清空废纸篓；用户需要释放空间时自行处理已归档内容。

@@ -1,5 +1,5 @@
 {
-  "skill": "project-delivery-orchestrator",
+  "skill": "project-delivery-suite",
   "scenarios": [
     {
       "id": "new_project_numbered_lifecycle",
@@ -15,7 +15,7 @@
       "id": "route_existing_version_series",
       "prompt": "我有 V1、V2、V3 三套完整项目，PRD 和代码不一致，现在要开启新版本开发。",
       "expected": [
-        "routes naming, complete candidate creation, and predecessor archival to consolidate-project-versions",
+        "routes naming, complete candidate creation, and predecessor archival to the internal version-governance module",
         "does not run scaffold_delivery for the next complete version",
         "waits for candidate_materialized before creating development and acceptance chats",
         "records the five root paths and standardized handoff state"
@@ -36,7 +36,7 @@
       "expected": [
         "does not treat acceptance as version approval",
         "obtains or records separate authorized version approval",
-        "returns to consolidate-project-versions to archive every predecessor",
+        "returns to the internal version-governance module to archive every predecessor",
         "reports archive pending until all authorized moves are verified"
       ]
     },

@@ -47,6 +47,16 @@ supersedes: "[prior approved version]"
 | ID | Sources | Impact | Options | Authority needed | Status |
 |---|---|---|---|---|---|
 | CF-001 | [sources] | [impact] | [options] | [owner] | unresolved |
+
+## Approved constraint disposition
+
+Use this section only when no existing design/engineering/ADR artifact can carry the result. The working coverage matrix may remain temporary.
+
+| Stable ID | Approved original | Source / authority | Category / scope | Change policy | Target authority file | Disposition | Evidence |
+|---|---|---|---|---|---|---|---|
+| CON-001 | [verbatim approved constraint] | [file/version/decision] | [platform/compat/etc.] | frozen | [engineering contract/ADR/design] | preserved | [target excerpt] |
+
+Allowed dispositions are `preserved`, `relocated`, `explicitly_superseded`, and `unresolved`. A generalized restatement is not evidence of preservation.
 ```
 
 Keep PRD status `draft` until an authorized owner explicitly approves this exact content and its approval evidence is recorded; only then change PRD status to `approved`. Record the approval content digest when practical so later edits cannot inherit stale approval. PRD approval does not change `candidate_state`; keep the version as `active_candidate` and validation as `pending` or `failed` until code checks pass. Independent acceptance changes only `acceptance_status`. Change `version_approval_status` and current authority only after separate authorized version approval; archive predecessors afterward and record `archive_status` independently. Filled placeholders, absence of conflict, completed code, or acceptance do not imply version approval. Do not implement behavior governed by an unresolved conflict.

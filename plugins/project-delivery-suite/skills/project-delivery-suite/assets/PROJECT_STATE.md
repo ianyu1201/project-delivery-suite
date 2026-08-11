@@ -20,6 +20,9 @@
 - 独立验收：pending / rejected / accepted
 - 版本批准：pending / approved
 - 归档状态：not-applicable / pending / organized
+- 语义覆盖：pending / semantic_coverage_passed / semantic_coverage_limited / semantic_coverage_failed
+- Anti-drift：limited / enforced
+- 边界快照：missing / attached
 - 版本状态：idea / defining / contracted / building / active_candidate / validation_passed / accepted / version_approved-current / predecessors_archived / released-live_verified
 - 当前阶段：S0–S7
 - 当前分支：
@@ -43,6 +46,7 @@
 2. 当前未解决 Issue（如有）：
 3. 代码、测试和运行入口：
 4. 设计/实现与验收合同：
+5. 当前约束保真证据（可为临时验证结果或现有文件内嵌章节）：
 
 ## 下一步
 

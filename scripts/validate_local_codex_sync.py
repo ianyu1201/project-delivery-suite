@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compare installed Codex Skills with the canonical GitHub plugin copies."""
+"""Compare the installed Codex Skill with the canonical GitHub plugin copy."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 
 
-SKILL_IDS = ("project-delivery-orchestrator", "consolidate-project-versions")
+SKILL_IDS = ("project-delivery-suite",)
 IGNORED_DIRS = {".git", ".github", "__pycache__"}
 
 
