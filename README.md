@@ -1,5 +1,7 @@
 # Project Delivery Suite
 
+> 当前统一发布版本：`0.6.0`（Codex 插件、本地 Skill 快照与 WorkBuddy/SkillHub 包）
+
 [![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![Python 3.11 / 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.13-blue.svg)](.github/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -335,8 +337,12 @@ plugins/project-delivery-suite/
   skills/
     project-delivery-orchestrator/        主控 Skill 快照
     consolidate-project-versions/         版本治理 Skill 快照
+distributions/workbuddy/                  WorkBuddy/SkillHub 单 Skill 适配源码与测试
+VERSION                                   三方统一发布版本
 scripts/
   validate_bundle.py                      组合包结构校验
+  validate_release_sync.py                三方版本和共享文件漂移门禁
+  build_workbuddy_package.py              可复现 WorkBuddy ZIP 构建器
 install.sh                                安装脚本
 ```
 
