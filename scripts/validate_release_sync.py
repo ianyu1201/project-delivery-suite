@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Fail when Codex, local Skill snapshots, and WorkBuddy release versions drift."""
+"""Validate one release version without erasing platform-specific behavior.
+
+The Codex plugin directories are the canonical Skill snapshots. A separate
+local-install comparison verifies ~/.codex/skills when publishing from a
+maintainer workstation. WorkBuddy intentionally keeps a flattened package and
+manual task-Prompt fallback, so only declared shared core files are hash-equal.
+"""
 
 from __future__ import annotations
 
