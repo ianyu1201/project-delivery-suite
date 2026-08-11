@@ -1,9 +1,9 @@
 ---
-name: ai-project-delivery-orchestrator
+name: project-delivery-orchestrator
 description: 面向非专业开发者和 AI 协作团队的软件项目交付总控；将模糊想法或既有项目组织为可审计的建档、规模分级、编号式全生命周期目录、PRD/设计、实现与验收合同、Git/版本管理、阶段化 Codex 对话、独立验收和版本复盘。Use when starting or taking over a project, deciding what to do next, coordinating agents or chats, starting a release, rescuing an AI-built project, or asking whether a project is ready to build or release. When complete historical version folders, cross-version PRD conflicts, or predecessor archival exist, orchestrate `consolidate-project-versions` instead of creating the next complete version itself.
 ---
 
-# AI 项目交付总控
+# 项目交付总控
 
 把对话当作临时工作间，把仓库中的冻结文档、Git 提交和运行证据当作项目记忆。帮助不熟悉开发流程的用户从一句想法开始，也允许成熟项目从当前阶段接入。
 

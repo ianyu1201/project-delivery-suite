@@ -65,7 +65,7 @@
 
 | Skill | 定位 | 主要负责 | 不负责 |
 |---|---|---|---|
-| [`ai-project-delivery-orchestrator`](plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
+| [`project-delivery-orchestrator`](plugins/project-delivery-suite/skills/project-delivery-orchestrator) | 主控 / 用户入口 | 项目启动、规模判断、阶段门禁、文件化状态、Codex 对话编排、开发交接、独立验收和版本冻结 | 不自行处理既有多版本目录，不与版本治理器并发写候选 |
 | [`consolidate-project-versions`](plugins/project-delivery-suite/skills/consolidate-project-versions) | 专业版本治理器 | 历史版本审计、PRD 冲突、Issue 延续、完整代码候选、版本一致性验证和全部前序版本归档 | 不负责项目全生命周期对话，不自动删除、上传、部署或访问生产数据库 |
 
 两者不是 Git 主分支与功能分支的关系，而是两个独立维护、独立测试、协同运行的 Skill。
@@ -76,7 +76,7 @@
 用户需求或既有项目
         │
         ▼
-ai-project-delivery-orchestrator
+project-delivery-orchestrator
 识别项目 → 建档 → 阶段门禁 → 产品/设计/交付合同
         │
         │ 发现多个完整版本、跨版本 PRD 冲突或待归档前序版本
@@ -86,7 +86,7 @@ consolidate-project-versions
         │
         │ 返回候选路径、来源谱系、治理周期和验证计划
         ▼
-ai-project-delivery-orchestrator
+project-delivery-orchestrator
 开发会话 → 本地验证 → 独立验收 → 版本批准
         │
         ▼
@@ -247,7 +247,7 @@ project-delivery-suite@project-delivery-suite
 
 ### 从旧名称迁移
 
-`0.2.0` 及更早版本使用 `AI Project Delivery Suite` / `ai-project-delivery-suite`。技术标识已在 `0.3.0` 统一改为 `Project Delivery Suite` / `project-delivery-suite`。已经安装旧版本的用户执行：
+`0.2.0` 及更早版本使用 `AI Project Delivery Suite` / `ai-project-delivery-suite`。插件技术标识已在 `0.3.0` 统一改为 `Project Delivery Suite` / `project-delivery-suite`。`0.3.0` 的主控 Skill ID 仍为 `ai-project-delivery-orchestrator`，从 `0.4.0` 起改为 `project-delivery-orchestrator`。已经安装旧版本的用户执行：
 
 ```bash
 codex plugin remove ai-project-delivery-suite@ai-project-delivery-suite
@@ -256,7 +256,14 @@ codex plugin marketplace add ianyu1201/project-delivery-suite
 codex plugin add project-delivery-suite@project-delivery-suite
 ```
 
-GitHub 旧仓库地址会自动跳转到新地址，但 Codex 本地插件标识不会自动改名，因此需要执行一次上述迁移。
+如果已经安装 `0.3.0`，刷新市场并重新安装即可取得新的 Skill ID：
+
+```bash
+codex plugin marketplace upgrade project-delivery-suite
+codex plugin add project-delivery-suite@project-delivery-suite
+```
+
+GitHub 旧仓库地址会自动跳转到新地址，但 Codex 本地插件和 Skill 标识不会在既有任务中自动改名；升级后请新建 Codex 任务。
 
 ## 升级和卸载
 
@@ -322,7 +329,7 @@ Skill 会先说明已确认事实、推断、缺口和拟执行动作。默认�
 plugins/project-delivery-suite/
   .codex-plugin/plugin.json               插件清单
   skills/
-    ai-project-delivery-orchestrator/     主控 Skill 快照
+    project-delivery-orchestrator/        主控 Skill 快照
     consolidate-project-versions/         版本治理 Skill 快照
 scripts/
   validate_bundle.py                      组合包结构校验
@@ -333,7 +340,7 @@ install.sh                                安装脚本
 
 本仓库是两个 Skill 和组合插件的唯一活跃源码仓库：
 
-- 主控源码：[`plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator`](plugins/project-delivery-suite/skills/ai-project-delivery-orchestrator)
+- 主控源码：[`plugins/project-delivery-suite/skills/project-delivery-orchestrator`](plugins/project-delivery-suite/skills/project-delivery-orchestrator)
 - 版本治理源码：[`plugins/project-delivery-suite/skills/consolidate-project-versions`](plugins/project-delivery-suite/skills/consolidate-project-versions)
 - 插件清单：[`plugins/project-delivery-suite/.codex-plugin/plugin.json`](plugins/project-delivery-suite/.codex-plugin/plugin.json)
 

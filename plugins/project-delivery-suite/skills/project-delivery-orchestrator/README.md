@@ -1,4 +1,4 @@
-# AI Project Delivery Orchestrator
+# Project Delivery Orchestrator
 
 [![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -43,7 +43,7 @@
 ## 与版本治理 Skill 的关系
 
 ```text
-ai-project-delivery-orchestrator
+project-delivery-orchestrator
 项目生命周期、阶段门禁、开发对话和独立验收
                     │
                     └── 调用 consolidate-project-versions

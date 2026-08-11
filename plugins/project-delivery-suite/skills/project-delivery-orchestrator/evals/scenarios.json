@@ -1,5 +1,5 @@
 {
-  "skill": "ai-project-delivery-orchestrator",
+  "skill": "project-delivery-orchestrator",
   "scenarios": [
     {
       "id": "new_project_numbered_lifecycle",

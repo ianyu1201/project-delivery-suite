@@ -2,7 +2,7 @@
 
 ## 1. 职责边界
 
-`ai-project-delivery-orchestrator` 是用户入口和生命周期总控，负责项目建档、阶段门禁、Codex 对话、开发编排、独立验收和项目状态。
+`project-delivery-orchestrator` 是用户入口和生命周期总控，负责项目建档、阶段门禁、Codex 对话、开发编排、独立验收和项目状态。
 
 `consolidate-project-versions` 是版本目录治理器，独占以下决定和动作：
 

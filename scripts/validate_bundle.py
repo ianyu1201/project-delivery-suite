@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PLUGIN = ROOT / "plugins" / "project-delivery-suite"
-SKILL_NAMES = ("ai-project-delivery-orchestrator", "consolidate-project-versions")
+SKILL_NAMES = ("project-delivery-orchestrator", "consolidate-project-versions")
 
 
 def load_json(path: Path) -> object:
