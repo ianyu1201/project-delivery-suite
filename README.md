@@ -1,6 +1,6 @@
 # Project Delivery Suite
 
-> 当前统一发布版本：`0.6.0`（Codex 插件、本地 Skill 快照与 WorkBuddy/SkillHub 包）
+> 当前 Codex 发布版本：`0.6.0`
 
 [![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![Python 3.11 / 3.13](https://img.shields.io/badge/Python-3.11%20%7C%203.13-blue.svg)](.github/workflows/ci.yml)
@@ -14,18 +14,11 @@
 
 > 组合包不是把两个 Skill 粗暴合并成一份说明。它保留两个清晰职责，通过显式交接避免两个 Agent 同时修改同一个候选版本。
 
-## 三个平台的同步口径
+## GitHub 与本机 Codex 的同步口径
 
-`0.6.0` 表示同一套发布基线和治理语义，不表示三个安装载荷逐字节相同：
+本仓库只发布 Codex 版。GitHub 是两个 Codex Skill 的权威源码，本机 Codex 安装副本除各自的 `.git` / `.github` 管理信息外必须逐文件一致，不维护另一套功能分支。
 
-- **GitHub 是 Codex 版权威源码**：包含主控和版本治理两个 Skill。
-- **本机 Codex 是 GitHub Skill 目录的精确镜像**：除本机各自的 `.git` / `.github` 管理信息外，Skill 文件必须逐文件一致；本机不维护另一套功能分支。
-- **WorkBuddy 是兼容分发版**：保持相同版本号、核心治理规则和确定性脚本，但按 WorkBuddy 的单 Skill 包结构与实际工具能力适配。
-- **会话创建是明确的平台差异**：Codex 暴露会话创建工具时可以在用户确认后直接创建并登记；当前 WorkBuddy 兼容基线没有经验证的任务创建 API，因此生成完整标题、工作目录、固定起点和启动 Prompt，由用户在 WorkBuddy 界面手动创建，不虚构会话 ID。
-
-CI 只要求版本号和明确列入共享清单的核心文件一致，不会用 Codex 版覆盖 WorkBuddy 的平台适配层。
-
-维护者可在本机仓库运行以下只读检查，确认 Codex 安装副本与 GitHub 权威目录完全一致：
+维护者可运行以下只读检查：
 
 ```bash
 python3 scripts/validate_local_codex_sync.py
@@ -354,12 +347,11 @@ plugins/project-delivery-suite/
   skills/
     project-delivery-orchestrator/        主控 Skill 快照
     consolidate-project-versions/         版本治理 Skill 快照
-distributions/workbuddy/                  WorkBuddy/SkillHub 单 Skill 适配源码与测试
-VERSION                                   三方统一发布版本
+VERSION                                   Codex 统一发布版本
 scripts/
   validate_bundle.py                      组合包结构校验
-  validate_release_sync.py                三方版本和共享文件漂移门禁
-  build_workbuddy_package.py              可复现 WorkBuddy ZIP 构建器
+  validate_codex_release.py               插件与两个 Skill 版本一致性门禁
+  validate_local_codex_sync.py            本机 Codex 与 GitHub 内容漂移检查
 install.sh                                安装脚本
 ```
 

@@ -30,7 +30,7 @@ jobs:
       - name: Validate plugin bundle
         run: |
           python -B scripts/validate_bundle.py
-          python -B scripts/validate_release_sync.py
+          python -B scripts/validate_codex_release.py
       - name: Compile Python files
         run: |
           python -B -m compileall -q scripts plugins/project-delivery-suite/skills
@@ -44,13 +44,6 @@ jobs:
           python -B -m unittest discover \
             -s plugins/project-delivery-suite/skills/consolidate-project-versions/scripts \
             -p 'test_*.py' -v
-      - name: Test WorkBuddy distribution
-        run: |
-          python -B -m unittest discover \
-            -s distributions/workbuddy/tests \
-            -p 'test_*.py' -v
-          python -B scripts/build_workbuddy_package.py
-          python -B distributions/workbuddy/tests/validate_workbuddy_package.py
       - name: Smoke-test CLIs
         run: |
           python plugins/project-delivery-suite/skills/project-delivery-orchestrator/scripts/project_snapshot.py --help >/dev/null
