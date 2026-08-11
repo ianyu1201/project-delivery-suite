@@ -1,6 +1,6 @@
 # Consolidate Project Versions
 
-[![Bundle CI](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/ai-project-delivery-suite/actions/workflows/ci.yml)
+[![Bundle CI](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/ianyu1201/project-delivery-suite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 面向 AI 开发项目的跨版本治理 Codex Skill。它审计现有版本目录，整合 PRD、未解决 Issue 和完整代码，生成一份可继续迭代的下一版本；新版本批准后，将该系列的全部前序版本移入项目的历史归档。
@@ -52,11 +52,11 @@ V4/              唯一活动版本：最终 PRD + 活动 Issue + 完整代码
 推荐使用组合包，一次安装主控和版本治理能力：
 
 ```bash
-codex plugin marketplace add ianyu1201/ai-project-delivery-suite
-codex plugin add ai-project-delivery-suite@ai-project-delivery-suite
+codex plugin marketplace add ianyu1201/project-delivery-suite
+codex plugin add project-delivery-suite@project-delivery-suite
 ```
 
-组合包仓库：<https://github.com/ianyu1201/ai-project-delivery-suite>
+组合包仓库：<https://github.com/ianyu1201/project-delivery-suite>
 
 本 Skill 也可以独立调用；独立调用时仍然遵守相同的审计、授权、候选和归档门禁。
 
