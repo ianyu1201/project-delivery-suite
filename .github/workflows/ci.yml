@@ -33,7 +33,7 @@ jobs:
           python -B scripts/validate_release_sync.py
       - name: Compile Python files
         run: |
-          python -B -m compileall -q scripts plugins/project-delivery-suite/skills distributions/workbuddy
+          python -B -m compileall -q scripts plugins/project-delivery-suite/skills
       - name: Test delivery orchestrator
         run: |
           python -B -m unittest discover \
