@@ -32,6 +32,15 @@ def main() -> int:
         assert f"name: {name}" in text.split("---", 2)[1]
         assert (skill_root / "README.md").is_file()
         assert (skill_root / "LICENSE").is_file()
+    orchestrator = PLUGIN / "skills" / "project-delivery-orchestrator"
+    fallback = orchestrator / "assets" / "MINIMUM_PRD.md"
+    orchestrator_text = (orchestrator / "SKILL.md").read_text(encoding="utf-8")
+    assert fallback.is_file()
+    assert "assets/MINIMUM_PRD.md" in orchestrator_text
+    assert "同一版本只维护一份现役 PRD" in orchestrator_text
+    assert "prd_skill_unavailable" in (orchestrator / "evals" / "scenarios.json").read_text(
+        encoding="utf-8"
+    )
     assert (ROOT / "LICENSE").read_text(encoding="utf-8").startswith("MIT License")
     return 0
 
