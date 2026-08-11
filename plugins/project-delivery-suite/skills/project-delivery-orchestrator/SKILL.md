@@ -24,6 +24,7 @@ description: 面向非专业开发者和 AI 协作团队的软件项目交付总
 11. 每次变更前锁定项目根目录、Git/worktree、版本和目标交付物；当前明确路径优先于旧对话记忆。
 12. 把“全部完成、没有 Bug、完全一致”等愿望翻译为范围、严重度、环境、门禁和残余风险，不把绝对愿望伪装成可证明事实。
 13. 总控只负责生命周期和对话编排；既有版本系列的下一版命名、完整候选目录和全部前序版本归档由 `consolidate-project-versions` 唯一负责。
+14. 专业 PRD Skill 是可选增强能力，不是运行前提；缺失时使用内置最小 PRD 回退合同，不中断项目流程，也不要求用户额外安装。
 
 ## 入口判断
 
@@ -139,12 +140,14 @@ python3 <skill-dir>/scripts/scaffold_delivery.py --root <project-root> --scale <
 
 - 多版本文件夹、PRD/代码整合和全部前序归档：优先 `consolidate-project-versions`；
 - 其他项目知识收尾/目录治理：优先 `neat-freak` 或同类能力；
-- PRD：优先 `prd-development` 或同类产品能力；
+- PRD：优先 `prd-development` 或同类产品能力；缺失时不要阻断或假装已调用，改用 [assets/MINIMUM_PRD.md](assets/MINIMUM_PRD.md) 生成最小但可批准、可追溯的 PRD；
 - Git/版本：优先 `git-workflow-and-versioning` 或同类能力；
 - UI 设计与审计：使用平台/框架对应的设计能力；
 - 实施、测试、性能、安全、硬件：按项目 profile 选择对应能力。
 
 调用专业 Skill 前遵循其完整说明。专业 Skill 与本总控冲突时，用户、系统和项目规则优先；本总控的阶段门禁不得被“直接开始编码”隐式绕过。
+
+PRD 回退遵循以下顺序：先复用项目现有的权威 PRD 文件名、语言和结构；只有没有可用约定时才适配 `MINIMUM_PRD.md`。同一版本只维护一份现役 PRD，不另建“最终版”“汇总版”或平行基线。先展示草稿并处理开放问题，只有授权产品负责人批准精确内容并留下批准证据后才把状态改为 `approved`。PRD 批准不等于实现、验收或版本批准。
 
 ### 5. 维护文件化状态
 
@@ -205,3 +208,4 @@ Git 与发布细则读取 [references/git-and-release-control.md](references/git
 - [references/novice-intake-and-scope-control.md](references/novice-intake-and-scope-control.md)：口语需求还原、对象锁定、范围变化和绝对目标翻译。
 - [references/version-governance-coordination.md](references/version-governance-coordination.md)：两个 Skill 的路径、状态、候选和归档交接合同。
 - [assets](assets/)：建档、合同、交接和验收模板。
+- [assets/MINIMUM_PRD.md](assets/MINIMUM_PRD.md)：没有专业 PRD Skill 或项目既有规范时的最小 PRD 回退模板。

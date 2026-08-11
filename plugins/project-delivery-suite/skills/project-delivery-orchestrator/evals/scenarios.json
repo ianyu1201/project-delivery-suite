@@ -48,6 +48,17 @@
         "explains that same-disk archival does not reclaim space",
         "leaves any later deletion to the user"
       ]
+    },
+    {
+      "id": "prd_skill_unavailable",
+      "prompt": "我只安装了 Project Delivery Suite，没有 prd-development。请把已经确认的项目方案整理成 PRD。",
+      "expected": [
+        "does not block or require installation of another Skill",
+        "reuses the existing authoritative PRD file and structure when present",
+        "otherwise adapts the built-in minimum PRD fallback",
+        "keeps the PRD draft until exact-content approval evidence exists",
+        "creates only one active PRD and separates implementation contracts"
+      ]
     }
   ]
 }
