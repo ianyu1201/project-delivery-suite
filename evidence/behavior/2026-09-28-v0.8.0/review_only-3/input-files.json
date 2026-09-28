@@ -1,0 +1,4 @@
+{
+  "README.md": "一个已存在的小型命令行项目。",
+  "app.py": "def add(a, b): return a - b\n"
+}

@@ -1,0 +1,97 @@
+{
+  "python_primary": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "primary_unit_tests": {
+    "count": 74,
+    "result": "passed",
+    "evidence": "parent tool result 1da182; complete summary observed"
+  },
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scripts/validate_bundle.py"
+      ],
+      "exit_code": 0,
+      "log": "validation-0.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "scripts/validate_codex_release.py"
+      ],
+      "exit_code": 0,
+      "log": "validation-1.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/project_snapshot.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "log": "validation-2.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "log": "validation-3.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "log": "validation-4.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "log": "validation-5.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/evaluate_behavior.py",
+        "--help"
+      ],
+      "exit_code": 0,
+      "log": "validation-6.txt"
+    },
+    {
+      "command": [
+        "python3.11",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "plugins/project-delivery-suite/skills/project-delivery-suite/scripts",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "validation-7.txt"
+    }
+  ],
+  "in_memory_compile": "passed",
+  "remote_ci": "not_run",
+  "python_3_13": "not_run"
+}

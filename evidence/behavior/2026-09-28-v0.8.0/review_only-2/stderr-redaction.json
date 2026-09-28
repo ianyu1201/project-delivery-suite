@@ -1,0 +1,9 @@
+{
+  "original_sha256": "b5bd28a8697c502f84e124ef0e690705c19eca1cf10e38f6d12fb0dbd587227b",
+  "published_sha256": "b5bd28a8697c502f84e124ef0e690705c19eca1cf10e38f6d12fb0dbd587227b",
+  "redactions": [
+    "personal home path",
+    "URL query strings (may contain signed download credentials)"
+  ],
+  "raw_trace_jsonl_unmodified": true
+}

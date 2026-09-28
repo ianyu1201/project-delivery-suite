@@ -1,0 +1,32 @@
+usage: audit_versions.py [-h] [--format {json,markdown}]
+                         [--max-files MAX_FILES] [--max-entries MAX_ENTRIES]
+                         [--include-excluded] [--allow-broad-root]
+                         COMMAND ...
+
+Read-only, low-resource audit of versioned project files. The command
+deliberately has no output-file option. It only reads the tree and writes a
+JSON or Markdown report to stdout:: python3 audit_versions.py summary PROJECT
+python3 audit_versions.py manifest PROJECT --format markdown ``summary``
+reports metadata and storage accounting without reading file contents.
+``manifest`` additionally computes a complete SHA-256 for every regular file
+that was readable.
+
+positional arguments:
+  COMMAND
+    summary             metadata/storage summary without content hashes
+    manifest            per-file manifest with complete SHA-256 hashes
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --format {json,markdown}
+                        report format (default: json)
+  --max-files MAX_FILES
+                        maximum regular files to retain in memory (default:
+                        100000)
+  --max-entries MAX_ENTRIES
+                        maximum directory entries to inspect (default:
+                        1000000)
+  --include-excluded, --include-regenerable
+                        scan default regenerable directories too
+  --allow-broad-root    explicitly allow scanning filesystem root or home
+                        directory

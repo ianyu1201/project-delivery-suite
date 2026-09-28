@@ -1,0 +1,4 @@
+{
+  "approved.md": "已批准硬约束 C-PLATFORM-01：支持既定平台。\n已批准硬约束 C-DATA-01：本地数据加密存储。",
+  "coverage.json": "{\"covered_ids\":[\"C-PLATFORM-01\"]}"
+}

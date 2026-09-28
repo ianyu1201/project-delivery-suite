@@ -1,0 +1,72 @@
+{
+  "profile": "(version 1)\n(allow default)\n(deny file-write* (require-all (require-not (subpath \"/private/tmp/pds-behavior-20260928/preflight/observer-fixture\")) (require-not (subpath \"/Users/Shared/pds-eval-20260928/observer\")) (require-not (literal \"/dev/null\"))))\n(deny file-read* (require-all (subpath \"$HOME\") (require-not (subpath \"/private/tmp/pds-behavior-20260928/preflight/observer-fixture\")) (require-not (subpath \"/Users/Shared/pds-eval-20260928/observer\")) (require-not (subpath \"$HOME/.nvm\"))))\n(deny network-outbound (require-not (remote ip \"localhost:55682\")))\n(deny network-bind)\n(deny network-inbound)",
+  "probes": [
+    {
+      "command": [
+        "/usr/bin/touch",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-fixture/transport-allowed.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/bin/touch",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-outside/transport-denied.txt"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "touch: /private/tmp/pds-behavior-20260928/preflight/observer-outside/transport-denied.txt: Operation not permitted\n"
+    },
+    {
+      "command": [
+        "/bin/cat",
+        "$HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/observer-dummy-secret.txt"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "cat: $HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/observer-dummy-secret.txt: Operation not permitted\n"
+    },
+    {
+      "command": [
+        "/usr/bin/touch",
+        "$HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/transport-denied.txt"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "touch: $HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/transport-denied.txt: Operation not permitted\n"
+    },
+    {
+      "command": [
+        "/usr/bin/curl",
+        "--noproxy",
+        "*",
+        "--max-time",
+        "1",
+        "http://127.0.0.1:55681/"
+      ],
+      "exit_code": 7,
+      "stdout": "",
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 55681 after 0 ms: Couldn't connect to server\n"
+    },
+    {
+      "command": [
+        "/usr/bin/curl",
+        "--max-time",
+        "1",
+        "https://example.invalid/"
+      ],
+      "exit_code": 56,
+      "stdout": "",
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (56) CONNECT tunnel failed, response 403\n"
+    }
+  ],
+  "proxy_decisions": [
+    {
+      "method": "CONNECT",
+      "allowed": false
+    }
+  ],
+  "direct_listener_accepted": []
+}

@@ -1,0 +1,929 @@
+{
+  "scope": "Only three requested output artifacts and Git objects at specified commits; no output modified or removed. Branding avatar untouched.",
+  "head": "40e20d45b5d8e03983bf2500e56141b584954f17",
+  "zip": {
+    "path": "$OUTPUTS/project-delivery-suite-v0.8.0.zip",
+    "size": 125552,
+    "sha256": "1ce7d2aedd493977c4e8bc7fbf4fab5c73cd3eb3c983bad1c7a7292e34abe356",
+    "git_blob_sha1": "32543a244ce2ec4e0b7e57e209741313c6840e80",
+    "entries": [
+      {
+        "archive_path": "project-delivery-suite/.agents/plugins/marketplace.json",
+        "repository_path": ".agents/plugins/marketplace.json",
+        "size": 418,
+        "sha256": "a41d22e7dfe661d5688f7a6a75a8d5a593703e0277ad8c21f987d34793d88da0",
+        "git_blob_sha1": "9973f6bb70f67f89599118374db4762f31525ffd",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": ".agents/plugins/marketplace.json"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": ".agents/plugins/marketplace.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/.github/workflows/ci.yml",
+        "repository_path": ".github/workflows/ci.yml",
+        "size": 1773,
+        "sha256": "cc4543ea5b9b3982642a997fb3239ad7d5c439a8e02b18beffad248dd77ebe0e",
+        "git_blob_sha1": "b298be8e960a25dc898a772633d7a420be27cc57",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": ".github/workflows/ci.yml"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/.gitignore",
+        "repository_path": ".gitignore",
+        "size": 29,
+        "sha256": "60c9bdd905fcf45ac485c680d32e9773962cf061b6f041dcddd033911558a672",
+        "git_blob_sha1": "b908d4cbe37ccea3388a2f308595ae63a255755d",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": ".gitignore"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": ".gitignore"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/LICENSE",
+        "repository_path": "LICENSE",
+        "size": 1066,
+        "sha256": "4f267d5337f2e26d215b61f4759e76d5f53a732534669c70dbc8cb3451c19611",
+        "git_blob_sha1": "cc2a06fecb29096083c2d6415c12ca6f0915b068",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "LICENSE"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "LICENSE"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/README.md",
+        "repository_path": "README.md",
+        "size": 7213,
+        "sha256": "af34b77526a4eb1033f5336fab060a1b19a3540d7c5862af339b62bf0212f904",
+        "git_blob_sha1": "fbabf2b879482a25fee42f9cd82c3a410abbe569",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "README.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/VERSION",
+        "repository_path": "VERSION",
+        "size": 6,
+        "sha256": "a66780da23103beaf12432b418508966b31a2a3a787f9468a5b6cdaa8667c1ef",
+        "git_blob_sha1": "a3df0a6959e154733da89a5d6063742ce6d5b851",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "VERSION"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/VERSION"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/install.sh",
+        "repository_path": "install.sh",
+        "size": 457,
+        "sha256": "f3b813ae6b6ccb9518ac587eb095c748a5af567daddcfc06c03285187adf350f",
+        "git_blob_sha1": "bfa833e3239223e36cf0df2e16a9350108d23b60",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "install.sh"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/.codex-plugin/plugin.json",
+        "repository_path": "plugins/project-delivery-suite/.codex-plugin/plugin.json",
+        "size": 1156,
+        "sha256": "1c578a620adae9a31a732b37aac44ea799cc8ae1fa67528dfc4e4a9561733b02",
+        "git_blob_sha1": "b9634b25edc8ea05982b7e11627ccd78d92d60f3",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/.codex-plugin/plugin.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/.gitignore",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/.gitignore",
+        "size": 58,
+        "sha256": "997d3b4df2681c5f1200aa84407aa89b45e6a7cf691a99e8b3cef6f9c77246b5",
+        "git_blob_sha1": "269fbc1d94668a265d0a6cbcd9bb7b533b3d641e",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/.gitignore"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/.gitignore"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/LICENSE",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/LICENSE",
+        "size": 1092,
+        "sha256": "ef6fdff085828682eed07c44271cdc62dd16b9df2b760bc5356f08f3d60eba82",
+        "git_blob_sha1": "088facc70019a0f815dc30a33e9b3c78bfc745c4",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/LICENSE"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/LICENSE"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/SKILL.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/SKILL.md",
+        "size": 6597,
+        "sha256": "d36badd35302fea058b7d3239c6fedb7063b89469fbf8da7c45b59cac164578a",
+        "git_blob_sha1": "cdb3d0d0d41e2fa7ba43830a5a3b356c6e3b2fe9",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/SKILL.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/VERSION",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/VERSION",
+        "size": 6,
+        "sha256": "a66780da23103beaf12432b418508966b31a2a3a787f9468a5b6cdaa8667c1ef",
+        "git_blob_sha1": "a3df0a6959e154733da89a5d6063742ce6d5b851",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "VERSION"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/VERSION"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/agents/openai.yaml",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/agents/openai.yaml",
+        "size": 374,
+        "sha256": "1bc55075d1c9d734b764ec3e29769996f4b5b49e9ebd6bc71be40fadda19663a",
+        "git_blob_sha1": "a72ffbda020d5dd66155db5ae7f54fbe71b6f502",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/agents/openai.yaml"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/agents/openai.yaml"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/ACCEPTANCE_REPORT.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/ACCEPTANCE_REPORT.md",
+        "size": 1136,
+        "sha256": "07a20b2e4df39ccefa3de504f7425c3b4e4c6968a793b52eed0e3bb082171245",
+        "git_blob_sha1": "667b128ee67f3ed563c87d1fade57caf47c97bfb",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/ACCEPTANCE_REPORT.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/ACCEPTANCE_REPORT.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/DEVELOPMENT_HANDOFF.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/DEVELOPMENT_HANDOFF.md",
+        "size": 2095,
+        "sha256": "7c424ca11479efaa2d36b7977a083f3e68e728c816b667c9a15002f25e2ad393",
+        "git_blob_sha1": "9cda0da5d8a4270ea36d3f2b77b333b9cc19e9f9",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/DEVELOPMENT_HANDOFF.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/EVIDENCE_MANIFEST.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/EVIDENCE_MANIFEST.md",
+        "size": 1325,
+        "sha256": "8d9421785acc6619018aeda146f9460f258df433c03c7b434710139dd7cfa65f",
+        "git_blob_sha1": "a5d984da26e0cc45e231262098cf861c23f1a881",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/EVIDENCE_MANIFEST.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/MINIMUM_PRD.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/MINIMUM_PRD.md",
+        "size": 2964,
+        "sha256": "596aff906e98ec4c19433f311fb288b0b6ecd4402f9be52d5b385b096c24221b",
+        "git_blob_sha1": "ca491e92324fce989ad59ae427a3e10e99c1a981",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/MINIMUM_PRD.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/MINIMUM_PRD.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_BRIEF.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_BRIEF.md",
+        "size": 1150,
+        "sha256": "e7f6d6e25185cc529f47705ac8401ae921ba5b72633dcc547e268aadab17cfd0",
+        "git_blob_sha1": "4b10fc40e35ea2a49e7da630b46a3627c42594cf",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_BRIEF.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_BRIEF.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_STATE.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_STATE.md",
+        "size": 2030,
+        "sha256": "2e9b0d7e09271a561f6832bbce6feaee46ec478818029bed3c134ef5227fc87e",
+        "git_blob_sha1": "dcc3e42514c84f7f8b02f774044fb4c1aad59cc3",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_STATE.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/PROJECT_STATE.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/RELEASE_CHARTER.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/RELEASE_CHARTER.md",
+        "size": 1109,
+        "sha256": "af3eb9f6ef1ef3271d98dde8ce8d779f002648104e9b9792e3e367b92bd7a778",
+        "git_blob_sha1": "834761933c141e291d0c4f8c3bd3d26899d9cc10",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/RELEASE_CHARTER.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/RELEASE_CHARTER.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/THREAD_REGISTRY.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/THREAD_REGISTRY.md",
+        "size": 504,
+        "sha256": "ef9174f9f2bdddf336e5d7b6321eadf7ef26fc7e5685dec3d4ea512bf6d1910e",
+        "git_blob_sha1": "94002c302c9dcf8782e4a6ee929d810944360c86",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/THREAD_REGISTRY.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/THREAD_REGISTRY.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/UI_IMPLEMENTATION_AND_RUNTIME_ACCEPTANCE_CONTRACT.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/UI_IMPLEMENTATION_AND_RUNTIME_ACCEPTANCE_CONTRACT.md",
+        "size": 3839,
+        "sha256": "7a20ffbffaf1dd44eb75d102a765e3fc12e057cf6c494516b9f0ba3d0dcf0f6c",
+        "git_blob_sha1": "c35b66ca916365d3a76918ece70cd7411d8b3c31",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/UI_IMPLEMENTATION_AND_RUNTIME_ACCEPTANCE_CONTRACT.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/UI_IMPLEMENTATION_AND_RUNTIME_ACCEPTANCE_CONTRACT.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/assets/current-version-docs-template.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/current-version-docs-template.md",
+        "size": 3683,
+        "sha256": "5772a7c3025228591c44146ce98426821293e01b8ac43488742f5b2415616493",
+        "git_blob_sha1": "6bbf51153570b4e9e98fabf4b9b481cd940663a6",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/current-version-docs-template.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/assets/current-version-docs-template.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/evals/behavior-cases.json",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/behavior-cases.json",
+        "size": 6570,
+        "sha256": "f2a0c25cdce5a2955015f515aabcbea1c855ceecfbc654e2506e1b85bdcdb53c",
+        "git_blob_sha1": "2c2f3fab64aeb66a53ea9892f5eae1b465f0ed76",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/behavior-cases.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/evals/scenarios.json",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/scenarios.json",
+        "size": 2859,
+        "sha256": "5d4eb52edd2508c9762e6351c2c4adde16db61c5882de3ab26fd395390fbb30a",
+        "git_blob_sha1": "d5f3f38df80fe615d0fb2255400c2b2860993ddb",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/scenarios.json"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/scenarios.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/evals/trigger-cases.json",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/trigger-cases.json",
+        "size": 936,
+        "sha256": "7b7c8ed5944f1ed9273fbb3983372cc8b50eda58a88c775fdd6eeeee60e33439",
+        "git_blob_sha1": "8abe09a50b82ec7bbca843c76c886dcc3a9a0786",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/trigger-cases.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-scenarios.json",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-scenarios.json",
+        "size": 5864,
+        "sha256": "c57a7d2c73cd2bb2c1b48a576c1058086b2e02bac8d4eacd8ff257673c64286e",
+        "git_blob_sha1": "53de9546257e5b981f6af2a6a62a831e3291ff60",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-scenarios.json"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-scenarios.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-trigger-cases.json",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-trigger-cases.json",
+        "size": 1039,
+        "sha256": "7a8904efe79b6f6ebe1a21faa6006b80665a485cf92f8632e7d5ae6388f5e402",
+        "git_blob_sha1": "16946edd3d51f9efef1b988efa594bc05834abbd",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-trigger-cases.json"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/evals/version-trigger-cases.json"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/artifact-and-folder-governance.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/artifact-and-folder-governance.md",
+        "size": 6287,
+        "sha256": "01d5fae9b1f0ab427200ce536cf1b2513870d3fc24ce399faca5528316eb26a5",
+        "git_blob_sha1": "616bdb58c051d8134b40a0f17dee5e5958b636ad",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/artifact-and-folder-governance.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/artifact-and-folder-governance.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/behavior-evaluation.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/behavior-evaluation.md",
+        "size": 4702,
+        "sha256": "4f93a095b9e359f86857c0d370b73f334626663d198d74d3b9252f730de20cc1",
+        "git_blob_sha1": "bddf7cef16ab987a244cadb7b2ae628cdeac2a89",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/behavior-evaluation.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/conversation-orchestration.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/conversation-orchestration.md",
+        "size": 5003,
+        "sha256": "37d195072a6f6a685935905dc3b33866986b7f82f60f5835265e431b9985466d",
+        "git_blob_sha1": "3b63016cb0472fbe8b44c38fa068592fdd698c50",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/conversation-orchestration.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/git-and-release-control.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/git-and-release-control.md",
+        "size": 2793,
+        "sha256": "9498969e159b133b117855317447858090b9845ab08057ebb146c7f49a4ab0fe",
+        "git_blob_sha1": "d49c49c03a2fee8a49b565240bf29ebdf1e9899b",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/git-and-release-control.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/git-and-release-control.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/governance-model.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/governance-model.md",
+        "size": 15188,
+        "sha256": "3e6147b97ee151a84c5a738bc4f04ded997fc2bf38fd7fcd9a8b51b5d4d4bb3e",
+        "git_blob_sha1": "a0b8bdd39167a33183257d27d7c24e00e20daab3",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/governance-model.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/lifecycle-and-scaling.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/lifecycle-and-scaling.md",
+        "size": 5847,
+        "sha256": "4cc45def40977b0b34feed7b13d6f4980886c14fbced2f137b424a576a6ca296",
+        "git_blob_sha1": "8992b594fd0d00dbe01ce8915c4be88b2b37a08c",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/lifecycle-and-scaling.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/novice-intake-and-scope-control.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/novice-intake-and-scope-control.md",
+        "size": 3860,
+        "sha256": "cdf3aff9f7cc3923c991b1ccc51a8b02c0077cd87fc45e2d5ee99f226a64c9f3",
+        "git_blob_sha1": "90924d18b1d00368acbd7a64f61e1c908504d358",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/novice-intake-and-scope-control.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/novice-intake-and-scope-control.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/project-profiles.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/project-profiles.md",
+        "size": 2180,
+        "sha256": "abf34ff1544dee0639b8235c78d34a7b28bc9e3dfbefc8a3ebdd1659cb85ee90",
+        "git_blob_sha1": "ba8ad66b6b7eb2c5c8afa0ca6eb63ccbf98b6f32",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/project-profiles.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/project-profiles.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/quality-and-evidence.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/quality-and-evidence.md",
+        "size": 4301,
+        "sha256": "05f059fcf0de426cb417bff414f05014c209b5fa0018926c0ad717b34833870b",
+        "git_blob_sha1": "56ed11c9cad9c8ff454868ca7d92398bf7aa3a13",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/quality-and-evidence.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/semantic-constraint-preservation.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/semantic-constraint-preservation.md",
+        "size": 6139,
+        "sha256": "493dbe403737b26eb2ba37507e735b7c2f6a276799ec96aa29ad4a8d1d0fcc2d",
+        "git_blob_sha1": "1049bc67f3912c856b5465939ebd243afdf1a453",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/semantic-constraint-preservation.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/ui-implementation-and-runtime-acceptance.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/ui-implementation-and-runtime-acceptance.md",
+        "size": 9394,
+        "sha256": "ca3a8b1cf8cd761b9adb7b9f6fdfba9d367dada316497a394503ff90e65e1d96",
+        "git_blob_sha1": "91ddec1a458f424dacfd6bf025353654ce51295e",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/ui-implementation-and-runtime-acceptance.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/references/version-governance-coordination.md",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/version-governance-coordination.md",
+        "size": 5357,
+        "sha256": "25de85e88777c48a8b7315256fed071465c769e227fc16ea1c7ef80f3bec0530",
+        "git_blob_sha1": "b4a8eb4c32e256aa6537bf9d02ffbdeb417f82cc",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/version-governance-coordination.md"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/references/version-governance-coordination.md"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py",
+        "size": 77779,
+        "sha256": "ee5fd92e02d10b4e0558dc7001d31e2618e16b4c07969a3704a91498157af061",
+        "git_blob_sha1": "e093651e5600596d02d2760fecb58c32cb860ca7",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/evaluate_behavior.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/evaluate_behavior.py",
+        "size": 8310,
+        "sha256": "d59093cf1a62bf802f9b52976b7a1933f05b681661289032fb7c8683e9491f44",
+        "git_blob_sha1": "e39f121db6c2fc58e2b956f1e189725549b5a50a",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/evaluate_behavior.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/project_snapshot.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/project_snapshot.py",
+        "size": 6419,
+        "sha256": "70472262146292078a706108c2a776481d7dac594f421baee9ac2161b033a5e0",
+        "git_blob_sha1": "b9f353645fb5d3a9705eba1a31f65f9451a46eaa",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/project_snapshot.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/project_snapshot.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py",
+        "size": 8387,
+        "sha256": "fd5bc8bca365cc31fa8808543c30ef228f1907b016d8326ea3ab63c5c4064683",
+        "git_blob_sha1": "345825c8cc1f450b28888e25aa93e4555defb529",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_audit_versions.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_audit_versions.py",
+        "size": 31285,
+        "sha256": "568f0be6cbe346a1bebf36db4b038015dfde60833b5e026d7c32b9b8f0603793",
+        "git_blob_sha1": "5286e9e6fa79bff837c49b752d5770c54882f1c5",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_audit_versions.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_audit_versions.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_behavior_evaluation.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_behavior_evaluation.py",
+        "size": 5673,
+        "sha256": "4f83efe3172bf61cc23f1cea35deb573d04c747701d142bdab5605322c2405de",
+        "git_blob_sha1": "b9a9874c32a8abc5b2044c11f0914471f0198fcc",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_behavior_evaluation.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_orchestrator_scripts.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_orchestrator_scripts.py",
+        "size": 7124,
+        "sha256": "bf386e40e8ba25e4eba7f83fa13ef0eb067f2906a7fe01de9d383578b918c1f9",
+        "git_blob_sha1": "bdeb13ce3aef079f6d23ff483b3ab6e48fe2c565",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_orchestrator_scripts.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_orchestrator_scripts.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_semantic_coverage.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_semantic_coverage.py",
+        "size": 10498,
+        "sha256": "0700611de83604fb7b78e74a62951b77826a1eba88321a06863ba6fcd060ec2e",
+        "git_blob_sha1": "504b7def12a0a1896419a5643917ab546dd7eb48",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_semantic_coverage.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/test_semantic_coverage.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py",
+        "repository_path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py",
+        "size": 13457,
+        "sha256": "c0947294f5904543b095edc75a4d452ed7881bf09e6cea7eba52163a21f9826a",
+        "git_blob_sha1": "c7b0c6a6327c84586d8e95e50bbfa14afeef23d5",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/scripts/validate_bundle.py",
+        "repository_path": "scripts/validate_bundle.py",
+        "size": 2520,
+        "sha256": "6161a5533f0158d2d69254a941ccd7b7327840dd837400ddbc970bef4e052259",
+        "git_blob_sha1": "1cb9a45c6dd3fdc436fe4c6d162c57ef1d7e1bfb",
+        "matches": [
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "scripts/validate_bundle.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/scripts/validate_codex_release.py",
+        "repository_path": "scripts/validate_codex_release.py",
+        "size": 1116,
+        "sha256": "2c36cfa4b21c4aface3a575f72471a256ecee7984f7ad727d3fa5b9c59c07f8d",
+        "git_blob_sha1": "95abfe45d85771e6ad6925c632b5ddee2e8f4399",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "scripts/validate_codex_release.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "scripts/validate_codex_release.py"
+          }
+        ],
+        "matches_head_path": true
+      },
+      {
+        "archive_path": "project-delivery-suite/scripts/validate_local_codex_sync.py",
+        "repository_path": "scripts/validate_local_codex_sync.py",
+        "size": 2630,
+        "sha256": "9a2ec219c1ce6045d5b6b1257f013af44f25d1834d79ee6816db8674e989edcc",
+        "git_blob_sha1": "bdad97d5598e36585600294262e6eb685a9460e4",
+        "matches": [
+          {
+            "commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+            "path": "scripts/validate_local_codex_sync.py"
+          },
+          {
+            "commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+            "path": "scripts/validate_local_codex_sync.py"
+          }
+        ],
+        "matches_head_path": true
+      }
+    ],
+    "all_files_match_head": true,
+    "head_paths_absent_from_zip": []
+  },
+  "patches": [
+    {
+      "path": "$OUTPUTS/project-delivery-suite-v0.8.0/0001-fix-enforce-path-boundaries-and-distinguish-evidence.patch",
+      "size": 53481,
+      "sha256": "987d1174743454e44bb03b671206117c40895a2d717c87d6c6c74e92b8299d71",
+      "git_blob_sha1": "8066e3969e64330edf68a42ad1788d305c8c3bcd",
+      "source_commit": "6b0d7962652452b3d274c37da7948ba7fd672aaa",
+      "source_header_matches": true,
+      "exact_single_format_patch": false,
+      "stable_patch_id": "1d9c1698bcbeaf5450cd216d97d7360accc728b8",
+      "commit_patch_id": "1d9c1698bcbeaf5450cd216d97d7360accc728b8",
+      "diff_matches_commit": true,
+      "blob_matches": []
+    },
+    {
+      "path": "$OUTPUTS/project-delivery-suite-v0.8.0/0002-feat-add-local-delivery-and-auditable-behavior-evalu.patch",
+      "size": 70697,
+      "sha256": "d1684d1c1cce6b891d355ef39c9dd3fa97d8041704a8274789d4bee15ae63e27",
+      "git_blob_sha1": "016fb6ae3c49a602ca33b5fbaaba30cb1a17a042",
+      "source_commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+      "source_header_matches": true,
+      "exact_single_format_patch": false,
+      "stable_patch_id": "e0300923c89dd3ea688e52213f86a74091a23959",
+      "commit_patch_id": "e0300923c89dd3ea688e52213f86a74091a23959",
+      "diff_matches_commit": true,
+      "blob_matches": []
+    }
+  ],
+  "report": {
+    "path": "$OUTPUTS/project-delivery-suite-改进报告.md",
+    "size": 6560,
+    "sha256": "237a9dbb041099ae2fca37da6c05ab48dce9fd02bf3955005b989e1dc6ab4d19",
+    "git_blob_sha1": "afb0eee085686722735d629482ea86bb8821ad1f",
+    "blob_matches": [],
+    "classification": "unique delivery narrative; retain before cleanup",
+    "unverified_claims": [
+      "65/74 passing tests and machine environment are historical assertions; no original logs were included in this scoped audit",
+      "independent workspace clean status and prior no-subagent statement are historical, not current verification"
+    ],
+    "unique_content": [
+      "two-batch delivery narrative and constraint preservation mapping",
+      "historical validation claims and limitations",
+      "delivery package and patch usage instructions"
+    ]
+  },
+  "safe_cleanup_after_review": [
+    "$OUTPUTS/project-delivery-suite-v0.8.0.zip",
+    "$OUTPUTS/project-delivery-suite-v0.8.0"
+  ],
+  "retain": [
+    "$OUTPUTS/project-delivery-suite-改进报告.md"
+  ],
+  "new_content": "Audit JSON and Markdown only; improvement report is unique packaging narrative, not a matching Git blob.",
+  "patch_series_exact_format_patch_match": true,
+  "patch_series_join_separator": "one newline"
+}

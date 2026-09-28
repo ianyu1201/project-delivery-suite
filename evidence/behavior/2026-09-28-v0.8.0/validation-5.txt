@@ -1,0 +1,15 @@
+usage: validate_semantic_coverage.py [-h] [--root ROOT]
+                                     [--format {json,markdown}]
+                                     input
+
+Validate structured cross-version constraint coverage without extracting
+semantics.
+
+positional arguments:
+  input                 Structured semantic coverage JSON
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --root ROOT           Verify pinned inventory and source/target files inside
+                        this root
+  --format {json,markdown}

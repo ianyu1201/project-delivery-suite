@@ -1,0 +1,14 @@
+{
+  "tested_product_head": "cef587814f1328c79ce9e47b2baadb6821605c45",
+  "timestamp": "2026-09-28T09:21:23.100164+00:00",
+  "bundle_validation": "passed",
+  "version_validation": "passed: 0.8.0 consistent",
+  "shell_syntax": "passed: bash -n install.sh",
+  "evidence_python_in_memory_compile": "passed",
+  "behavior_score": "11 actual observations scored; 7 cases covered across pinned commits; zero scorer errors",
+  "original_avatar_sha256": "706683d24bb379078679c3d3f27e2bb11202f4ac7b7ec186017d6ebd031e3ad0",
+  "remote_writes": "none",
+  "remote_ci": "not_run",
+  "python_3_13": "not_run",
+  "identity": "New commits use existing repository GitHub noreply identity; global Git config unchanged."
+}

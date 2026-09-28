@@ -1,0 +1,11 @@
+usage: evaluate_behavior.py [-h] cases runs [runs ...]
+
+Score source-linked behavior observations; never invoke a model or mutate
+fixtures.
+
+positional arguments:
+  cases
+  runs
+
+optional arguments:
+  -h, --help  show this help message and exit

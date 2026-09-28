@@ -1,0 +1,16 @@
+{
+  "scope": "New evidence text files only; original avatar not read into evidence",
+  "checks": [
+    "personal_home",
+    "api_key_value",
+    "bearer_value",
+    "jwt_value",
+    "signed_url_query",
+    "private_key",
+    "credential_json_value"
+  ],
+  "findings": [],
+  "temporary_auth_files_remaining": [],
+  "limitations": "Heuristic scan plus raw-log independent review; not a proof that every possible sensitive string is absent. Personal-home and stderr URL-query redactions documented separately.",
+  "file_count": 246
+}

@@ -1,0 +1,7 @@
+(version 1)
+(allow default)
+(deny file-write* (require-all (require-not (subpath "/private/tmp/pds-behavior-20260928/review_only-1")) (require-not (subpath "/Users/Shared/pds-eval-20260928/review_only-1")) (require-not (literal "/dev/null"))))
+(deny file-read* (require-all (subpath "$HOME") (require-not (subpath "/private/tmp/pds-behavior-20260928/review_only-1")) (require-not (subpath "/Users/Shared/pds-eval-20260928/review_only-1")) (require-not (subpath "$HOME/.nvm"))))
+(deny network-outbound (require-not (remote ip "localhost:55844")))
+(deny network-bind)
+(deny network-inbound)

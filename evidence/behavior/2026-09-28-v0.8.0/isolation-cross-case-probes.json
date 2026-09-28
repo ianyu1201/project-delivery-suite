@@ -1,0 +1,20 @@
+[
+  {
+    "command": [
+      "/bin/cat",
+      "/private/tmp/pds-behavior-20260928/preflight/observer-fixture/input.txt"
+    ],
+    "exit_code": 0,
+    "stdout": "fixture",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "/bin/cat",
+      "/private/tmp/pds-behavior-20260928/preflight/observer-outside/rubric.txt"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "cat: /private/tmp/pds-behavior-20260928/preflight/observer-outside/rubric.txt: Operation not permitted\n"
+  }
+]

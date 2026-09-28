@@ -1,0 +1,23 @@
+{
+  "rules": [
+    "personal home prefix replaced with $HOME",
+    "stderr URL query strings removed"
+  ],
+  "logs": {
+    "raw-trace.jsonl": {
+      "original_sha256": "30a01cd2161485f45f70854bd5995b5935dbb3a2c404a68aecc5cea8756479e0",
+      "published_sha256": "30a01cd2161485f45f70854bd5995b5935dbb3a2c404a68aecc5cea8756479e0",
+      "changed": false
+    },
+    "stderr.txt": {
+      "original_sha256": "4425c07ec93459774290bea677d869f8bcd526ae9ed8e59319c5c4ff5451fe78",
+      "published_sha256": "d698c6bace4436a8c75d95ecce46ce9738f2bd5d80e781e7b94d532738ae0f58",
+      "changed": true
+    },
+    "full-rollout.jsonl": {
+      "original_sha256": "3cf18ed8e62d11b8461aae4798fc2fd7ad885848ab23282d71fff79fa9abb7fd",
+      "published_sha256": "3cf18ed8e62d11b8461aae4798fc2fd7ad885848ab23282d71fff79fa9abb7fd",
+      "changed": false
+    }
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "case_id": "resume_candidate",
+  "run_id": "resume_candidate-1",
+  "run_kind": "actual_model",
+  "model": "gpt-5.6-luna",
+  "skill_commit": "40e20d45b5d8e03983bf2500e56141b584954f17",
+  "configuration": {
+    "reasoning_effort": "xhigh",
+    "tool_policy": "Single OS sandbox restricts writes to fixture/isolated CLI runtime and denies home reads except CLI binaries; outbound network only local CONNECT proxy allowing chatgpt.com:443 for inference; no apps/MCP/web/multi-agent/approvals. CLI internal sandbox disabled to avoid unsupported nested seatbelt.",
+    "input_snapshot_sha256": "9a7bfdd54be5bf1d0cae4fda2d4543c02c9d0abd769e4db6079e8d03aa0118f9"
+  },
+  "duration_seconds": 135.40103602409363,
+  "raw_trace": {
+    "file": "raw-trace.jsonl",
+    "sha256": "0eaada8d1a8076587d7d8e312fa5ab8f54b7c32a16c2528986878bc03491bd6a"
+  },
+  "observer": "artifact_audit (independent observer)",
+  "total_tokens": 201022,
+  "cost_usd": null,
+  "model_identity_note": "Explicit CLI model selection; server-resolved model revision is not exposed in JSONL.",
+  "events": [
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 6,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_1\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"sed -n '1,240p' .agents/skills/project-delivery-suite/SKILL.md\\\"\",\"aggregated_output\":\"---\\nname: project-delivery-suite\\ndescription: 项目启动与接管、交付流程裁剪、多版本需求和代码整合、跨版本约束保真、版本验收与历史归档。Use for project kickoff or takeover, delivery coordination, reconciling historical versions, or release-governance decisions. A routine code explanation or local edit does not need full project governance; when explicitly invoked for a small change, use the local delivery path.\\n---\\n\\n# Project Delivery Suite\\n\\n一个用户入口，按目标选择局部交付、项目交付总控或版本治理。文件、批准记录、Git 固定点和运行证据承载跨会话事实。\\n\\n## 不可丢失的边界\\n\\n1. **继承授权**：只提出审阅或目标不明时先只读；用户明确要求实现、修复或按批准方案继续时，在已有授权内连续完成。不得因写入、验证、提交等步骤切换重复确认。目标、外部影响、权限或不可逆风险实质变化，或业务约束冲突时才询问。创建新任务、推送、上传、发布须有覆盖该动作及目标的明确授权。\\n2. **区分事实与批准**：最新目录、当前代码、绿色测试、合并 PR 和候选图都不自动成为批准需求、确认设计或批准版本。自测不等于独立验收；开发者不得自行批准正式版本。未执行的门禁如实标记。\\n3. **保持单一权威**：同一版本只维护一份现役 PRD，回答产品 what/why；设计规格、工程合同/ADR 承载其余约束。优先更新现有文件；专业 PRD Skill 缺失时使用 [最小 PRD](assets/MINIMUM_PRD.md)。\\n4. **保留硬约束**：批准约束只能 preserved / relocated / explicitly_superseded / unresolved。沉默、泛化、最新草案或归档不是取代证据。视觉探索不扩大已授权变化边界；涉及 UI 时读取专项合同。\\n5. **保护候选与历史**：不覆盖已有候选或原地修改批准历史；失败继续同一候选，不自动增版。完整候选必须包含继续开发所需的完整内容，不能仅交残缺补丁。\\n6. **保留操作边界**：本 Skill 不执行生产部署、共享/生产数据库操作、Trash 或删除。明确提出这些目标时，说明本 Skill 的能力边界并交由适用流程；不把能力边界变成对用户目标的全局拒绝。历史归档须有批准与移动授权，同盘归档不声称释放空间。\\n7. **有限且可证明的完成**：把“全部完成、零 Bug”转为明确范围、适用检查及残余风险；机械检查不代替语义复核或业务批准。\\n\\n## 路由：只加载当前分支\\n\\n| 当前目标 | 处理路径与参考资料 |\\n|---|---|\\n| 明确、局部、可逆的修复或小功能，无历史整合/重要产品决策 | 当前会话完成局部交付；[规模裁剪](references/lifecycle-and-scaling.md) |\\n| 新项目、既有项目接管、多个交付阶段或高风险变化 | 项目总控；[规模与阶段](references/lifecycle-and-scaling.md)、[新手需求与范围](references/novice-intake-and-scope-control.md) |\\n| 多个完整版本、PRD 冲突、下一完整候选或历史归档 | 版本治理；[治理模型](references/governance-model.md)、[模块交接](references/version-governance-coordination.md) |\\n| 批准约束迁移、历史去权威化或相关下游交接 | [语义约束保真](references/semantic-constraint-preservation.md)，按结构、引用、语义三层检查 |\\n| UI、主题、材质或交互变化 | [UI 实现与运行验收](references/ui-implementation-and-runtime-acceptance.md)；保留 frozen/allowed/prohibited/open/source-authority 边界 |\\n| 需要创建/交接任务或已有任务协调 | [会话编排](references/conversation-orchestration.md)；新任务须用户明确请求，具备独立目标和冻结输入 |\\n| 验证、证据复用或独立验收 | [质量与证据](references/quality-and-evidence.md)；按风险选择检查 |\\n| Git 固定点、提交与版本号 | [Git 与发布控制](references/git-and-release-control.md) |\\n| 整理权威文件或目录 | [文件治理](references/artifact-and-folder-governance.md)；不为局部任务预建全套目录 |\\n\\n## 版本治理入口\\n\\n仅在版本治理路径固定 `workspace_root / active_version_root / archive_root / repo_root / staging_root`。沿用项目命名与拓扑，区分 `latest_observed / current_approved / active_candidate`；无足够依据时保留未决，不以名称替代批准。\\n\\n需要盘点时运行：\\n\\n```bash\\npython3 <skill-dir>/scripts/project_snapshot.py --root <project-root>\\npython3 <skill-dir>/scripts/audit_versions.py summary <project-root> --format markdown\\n```\\n\\npartial/unsupported、未知数据、symlink、ignored/untracked、LFS/submodule、数据库/uploads 与密钥须显式处置；扫描省略不等于可丢弃。完整候选采用相邻唯一 staging 或项目约定的隔离 worktree，验证源谱系、manifest、哈希、mode、链接和排除项后提升；具体门禁见治理模型。\\n\\n语义迁移使用 `validate_semantic_coverage.py <coverage.json> --root <project-root>`；schema v2 仅验证结构和固定引用。完成权威来源复核后才记录 `semantic_coverage_passed`，归档还须版本批准及路径授权。纯新项目无旧批准约束时可有依据地记录 not-applicable。证据和兼容迁移说明见语义约束参考。\\n\\n`resolved-and-verified` Issue 退出活动清单；open/deferred/reopened/changed-not-verified 以稳定 ID 和验收条件延续。版本总控与治理模块不得并发创建或写同一候选。\\n\\n## 文件与结束状态\\n\\n按任务需要复用 [模板](assets/)：局部任务通常只更新已有文件和交付说明；跨会话才补恢复入口，实际创建任务才记录 THREAD_REGISTRY。PROJECT_STATE 保存路径、状态、证据指针和下一步，不复制产品需求。无需强制每个项目同时拥有 README、AGENTS 和 PROJECT_BRIEF；实际入口必须能找到适用冻结项。\\n\\n报告已改内容、适用检查、证据与未验证项。局部交付可结束为 completed / blocked；正式版本区分 validation、独立 acceptance、version approval、archive 和 release 状态。仅在唯一入口、历史明确非权威、批准约束均有有效处置、无未决高影响约束、冻结项可发现且下游边界快照已附带时，才报告 `anti-drift enforced`；只有指针收敛时是 limited。\\n\\n维护本 Skill 时，使用 [行为评估协议](references/behavior-evaluation.md) 检查授权、路由、证据和恢复行为；单元测试与合成轨迹不构成真实模型评估。\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 8,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_2\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"wc -l .agents/skills/project-delivery-suite/SKILL.md && sed -n '241,520p' .agents/skills/project-delivery-suite/SKILL.md\\\"\",\"aggregated_output\":\"      57 .agents/skills/project-delivery-suite/SKILL.md\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 11,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_4\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"sed -n '1,260p' .agents/skills/project-delivery-suite/references/governance-model.md && sed -n '1,260p' .agents/skills/project-delivery-suite/references/quality-and-evidence.md && sed -n '1,220p' .agents/skills/project-delivery-suite/references/git-and-release-control.md && sed -n '1,220p' .agents/skills/project-delivery-suite/references/lifecycle-and-scaling.md\\\"\",\"aggregated_output\":\"# Project-version governance model\\n\\n## Contents\\n\\n1. Naming and lifecycle\\n2. Minimal active surface\\n3. Authority and conflicts\\n4. Complete candidate contract\\n5. Requirements, code, and issues\\n6. Regenerable and sensitive data\\n7. Numbered lifecycle archive and storage\\n8. Optional remote recovery\\n9. Semantic constraint preservation\\n10. Closure matrix\\n\\n## 1. Naming and lifecycle\\n\\nTreat names as project data. Inventory folder names, filenames, version metadata, tags, language, and chronology before generating anything. Common patterns such as `V1/V2/V3` are examples, never defaults. Do not guess semantic-version bump type or lexical-sort names such as `V9` and `V10` without supporting evidence.\\n\\nResolve five distinct roots before writes: `workspace_root`, `active_version_root`, `archive_root`, `repo_root`, and `staging_root`. Classify the project as `complete-snapshot`, `numbered-lifecycle`, or project-defined. A release-document folder is not a complete project version.\\n\\nKeep these states separate:\\n\\n| State | Meaning | Naming consequence |\\n|---|---|---|\\n| Latest observed | Highest-looking artifact found | No authority by itself |\\n| Current approved | Newest version with valid approval evidence | Source of the next governance cycle |\\n| Active candidate | Existing unapproved version under repair | Continue its name; do not increment for retries |\\n| Historical approved | Prior approved state | Evidence only |\\n| Draft/unknown | Unapproved or unclear source | Never implementation authority |\\n\\nWhen a rule is ambiguous, ask one focused question containing observed names and the proposed next name. Reuse existing names for PRD, issues, source, tests, and archives.\\n\\nPersist the active candidate's source lineage, governance-cycle identity, candidate state, and latest validation state in existing version metadata or the candidate PRD. Do not create a second governance document for these markers. A failed staging directory is only recovery material until deliberately adopted as the active candidate. If naming and authority are both unknown, ask separate focused questions rather than silently coupling the answers.\\n\\n## 2. Minimal active surface\\n\\nThe next complete version normally needs:\\n\\n- one active PRD;\\n- one active unresolved-issue list only when needed or already conventional;\\n- complete reproducible source, tests, configuration, migrations, lockfiles, and required assets.\\n\\nDo not create separate baseline, decision, conflict, provenance, traceability, validation, archive-index, or AI-context documents by default. Store compact decisions, sources, and acceptance evidence in the PRD. “One PRD” means one product authority, not that source, tests, and issues belong inside one file.\\n\\nReuse an existing AI instruction entrypoint to identify the active PRD and make archives non-authoritative. If none exists and archive exclusion cannot be enforced, report the limitation instead of claiming drift prevention.\\n\\n## 3. Authority and conflicts\\n\\nHigher-level instructions, repository policy, security requirements, law, and retention controls cannot be overridden by project content.\\n\\nWithin authorized product scope, use:\\n\\n1. recorded decision by the current authorized owner;\\n2. approved change record;\\n3. newest approved PRD;\\n4. active candidate or draft evidence;\\n5. historical evidence.\\n\\nA material decision records owner/approver, authority scope, approval evidence, affected requirement or issue, chosen and superseded behavior, and source/date when available. Unknown authority remains unresolved. Require explicit decisions for behavior, scope, interfaces, data, security, privacy, compliance, destructive behavior, compatibility, and acceptance criteria. Omission is not deletion.\\n\\nFirst present the exact candidate PRD as a read-only proposal. After authorized document write scope exists, store it only in the active candidate or the staging directory intended to become that candidate. An authorized owner must approve that exact PRD content before changed product behavior is implemented. This approves product scope only; the version remains an active candidate until code validation and final version approval pass.\\n\\n## 4. Complete candidate contract\\n\\nA candidate is safe to materialize only when:\\n\\n- the approved source lineage and target name are known;\\n- the destination is absent, inside the confirmed project scope, outside the source, and not a symlink, root, home, archive root, or mount point;\\n- source Git state and a pre-copy manifest exist;\\n- nested repository, submodule, LFS, symlink, permission, hidden-file, ignored/untracked, non-Git, secret, and runtime-data handling is explicit;\\n- exclusions are individually classified rather than inferred from a directory name;\\n- a sibling staging directory is used and the approved source remains unchanged;\\n- destination paths, hashes, modes, symlinks, exclusions, and separately retained data match before promotion;\\n- the final destination is rechecked as absent immediately before atomic promotion.\\n- the exact approved candidate PRD and its approval evidence are written into the candidate without substituting a later draft.\\n\\nNever represent a branch, patch, partial tree, failed copy, or destination merged with prior content as a complete new version. Do not copy source `.git` metadata, including nested repositories, as candidate content; use the authorized Git clone/worktree strategy and explicitly handle submodules. Decide repository topology explicitly.\\n\\nWhen the delivery-orchestration module owns lifecycle coordination, the version-governance module returns control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, semantic coverage status, boundary snapshot, and validation plan. The delivery module owns development chats and independent acceptance; version governance resumes for conformance reconciliation, version approval state, and archival. The two internal modules must never write the candidate concurrently.\\n\\n## 5. Requirements, code, and issues\\n\\nValidate both directions internally:\\n\\n- every active requirement maps to implementation and acceptance evidence;\\n- every material code behavior and test maps to an active requirement, defect, or justified technical constraint.\\n\\nUse this gap check as working evidence rather than generating a permanent traceability document by default.\\n\\n| Issue status | Next-version treatment |\\n|---|---|\\n| Resolved and verified | Omit from active list; retain in historical evidence |\\n| Changed but unverified | Carry forward |\\n| Open, deferred, reopened | Carry forward with stable ID and acceptance condition |\\n| Duplicate, invalid, superseded | Omit only after disposition is recorded |\\n\\nAn issue changing intended behavior must update the PRD. Implementation defects stay in the issue list. Validate fixes one independently verifiable item at a time when practical, but do not create a second task system merely for this Skill.\\n\\nBefore executing project commands, inspect scripts and environment. Default to candidate-local lint, typecheck, tests, and builds with minimum privileges. External APIs, networked tests, shared services, and publication require authorization covering their target and data scope; reuse existing authorization rather than requesting it again. This Skill never deploys, applies migrations, seeds/resets, changes infrastructure, or accesses shared/production databases. Use static/dry-run checks or an explicitly disposable local environment; route real delivery operations to a separate workflow.\\n\\n## 6. Regenerable and sensitive data\\n\\nClassify content by evidence:\\n\\n| Class | Candidate | Historical treatment |\\n|---|---|---|\\n| Source, tests, config, migrations | Include | Retain |\\n| Lockfiles and toolchain constraints | Include | Retain |\\n| Installed dependencies/virtual environments | Rehydrate only as needed | Do not copy by default |\\n| Tool-supported shared cache/store | Reuse when safe | Do not version |\\n| Logs, coverage, temporary output | Do not copy | Removal candidate after verification |\\n| Build/release output | Decide from reproducibility and operational need | Retain only with reason |\\n| Secrets | Never copy or publish by default | Handle through the project's secret system |\\n| Databases, uploads, user/runtime data | Separately protected handling | Never assume Git recovery |\\n| Unknown content | Preserve until classified | Ineligible for removal |\\n\\nDo not force a universal dependency directory. Module resolution, native binaries, lockfiles, toolchains, and build flags can invalidate sharing. Report verified generated subdirectories separately so the user can make a manual cleanup decision without discarding an entire historical version containing unique data. The Skill does not perform the cleanup.\\n\\nA default exclusion such as `node_modules` is a discovery hint, not proof of regenerability. Confirm dependency declarations, lockfiles, toolchain constraints, project scripts, and any unique files through an included scan or separate project-specific evidence before treating the subtree as a storage candidate.\\n\\n## 7. Numbered lifecycle archive and storage\\n\\nAn archive directory changes authority and organization, not disk usage. Verify manifests and relative/path-dependent links after any authorized move. Reuse existing archive naming. With no project convention, propose the project's language equivalent of `90_历史归档`; the `90_` prefix means last-in-reading-order and non-authoritative history, not a forced universal spelling.\\n\\nComplete predecessor archival is part of a successful governance cycle. Include the exact source and archive destination of every predecessor version in the authorized write proposal. Only after the new candidate becomes the approved current version, move every predecessor in the governed series into the archive. Thus, when V4 replaces V3, V1, V2, and V3 all become archived, non-authoritative history and only V4 remains active outside the archive. Preserve original version names and verify each move. An unclassified, unauthorized, failed, or incomplete move keeps the state `archive pending`; never archive predecessors early while the candidate is still draft or unapproved.\\n\\nIn `complete-snapshot` topology, one complete current version remains active outside the archive and all predecessors live beneath the archive root. In `numbered-lifecycle` topology, materialize the complete candidate as an isolated worktree/staging from the approved Git baseline rather than a second permanent active source tree; after approval, use the project's authorized Git integration policy to establish the single active code path in the engineering area. Keep current PRD/design material in their numbered lifecycle areas; move superseded version material beneath `90_历史归档/<version>`; and retain historical code through verified Git fixed points or explicitly approved complete snapshots. A branch or worktree alone is never approval or completeness evidence.\\n\\nThe Skill may report logical and allocated estimates, generated-data paths, and recovery limitations. It never moves content to Trash and never deletes. A user who wants space back manually removes selected archived content outside this Skill after considering recovery evidence.\\n\\n## 8. Optional remote recovery\\n\\nRemote recovery is optional for governance and important when local history is reduced or device-loss protection matters. Detect repository state, remote configuration, and authentication separately. Missing GitHub CLI is not proof of no account.\\n\\nOffer a destination once and accept a decline. Do not infer remote publication from a local governance request. Reuse explicit authorization to create, publish, commit, tag, upload, or push when its destination and scope are known. Before treating a remote as recoverable:\\n\\n- record a source manifest and exclusion policy;\\n- inspect secrets and unsuitable large data across the complete outgoing Git object graph, including all refs, tags, branches, and retained history—not only the working tree;\\n- account for tracked, untracked, ignored, symlink, LFS, submodule, and non-Git content;\\n- restore every retained version into a fresh location;\\n- compare it under the same policy;\\n- preserve hosted Issues separately because ordinary Git history does not contain them.\\n\\n## 9. Semantic constraint preservation\\n\\nAfter authority classification and before replacing or archiving any approved source, inventory every material approved constraint. Record stable ID, original text, source/version/authority, category, scope, impact, change policy, target authority file, disposition, and evidence.\\n\\nAllowed dispositions are only `preserved`, `relocated`, `explicitly_superseded`, and `unresolved`. A silent omission, newer draft, archive move, or generalized restatement is not supersession. When PRD scope is narrowed to product what/why, relocate platform, compatibility, proprietary technology, implementation, and runtime acceptance constraints to an engineering contract or ADR.\\n\\nGenerate the downstream boundary snapshot (`frozen_constraints`, `allowed_changes`, `prohibited_changes`, `open_decisions`, `source_authority`) and validate the structured result with `validate_semantic_coverage.py`. Keep the matrix temporary unless the project already has an equivalent artifact. The schema-v2 script only checks structure and pinned references; it never grants semantic coverage or archive permission. Complete the source-backed semantic review in `semantic-constraint-preservation.md` before recording `semantic_coverage_passed`. Any other semantic-review status blocks deauthorization, archival, downstream handoff, and `anti-drift enforced`.\\n\\n## 10. Closure matrix\\n\\n| Area | Closed when |\\n|---|---|\\n| Discovery | Scope, chronology, names, current approved version, and candidate state are known or explicitly decided |\\n| PRD | Exactly one active PRD is approved by an authorized owner with evidence; material conflicts are resolved |\\n| Issues | Every prior issue is verified-closed, carried forward, or dispositioned with evidence |\\n| Candidate | A non-overwriting staged copy matches its manifest and contains all required reproducible inputs |\\n| Code | Requirement and reverse-scope checks pass; applicable safe commands pass |\\n| Semantic coverage | Every approved hard constraint is preserved, relocated, explicitly superseded, or visibly unresolved; the mechanical gate passes |\\n| Archive | Semantic coverage passes; every predecessor version is moved to the authorized archive and verified with exact move and link checks |\\n| Anti-drift | One active entry exists, semantic coverage passes, key frozen constraints are discoverable, and downstream boundary snapshots are attached |\\n| Remote | User declined with known risk, or fresh recovery matches manifests |\\n| Storage | Regenerable, sensitive, unknown, and archived content are classified without deletion or reclaimed-space claims |\\n\\nIncomplete scans, unsupported capabilities, ambiguous names, draft PRDs, unresolved authority, partial folders, unsafe command targets, failed checks, and pending recovery remain incomplete.\\n# 质量门禁、证据与独立验收\\n\\n## 证据层级\\n\\n证据按要证明的结论选择：静态检查/构建证明代码与构建事实，单元测试证明局部逻辑，集成测试/状态断言证明交互和数据行为，截图证明外观，视频证明时序。目标环境运行覆盖环境相关结论；独立复验增加独立性，但不自动覆盖其他检查。叙述或旧摘要只能提供线索。\\n\\n## 风险驱动验证\\n\\n为每个工作包标记风险：产品逻辑、数据、导航、视觉、无障碍、性能、安全、迁移、硬件。按风险选择门禁，不机械要求所有项目运行同一套测试。\\n\\n最低要求：\\n\\n- 修改代码：项目要求及影响范围内的必要测试、静态检查或构建；明确说明不适用项，不要求局部文档变更执行全套构建；\\n- 修改导航/数据/手势：自动化路径或可重复状态断言；\\n- 修改视觉/系统栏/动画：目标环境视觉抽样；\\n- 修改持久化/迁移：旧数据、失败和恢复场景；\\n- 控制实体设备：仿真/台架/安全停止/实机分层证据。\\n\\n## 缺陷等级\\n\\n- **P0**：数据不可恢复、严重安全/隐私、核心系统不可用或实体安全风险。\\n- **P1**：核心闭环无法完成、主要入口失效、稳定复现崩溃或关键结果错误。\\n- **P2**：重要但有绕行的体验、视觉、兼容或性能问题。\\n- **P3**：低影响瑕疵、优化建议或未来改进。\\n\\n版本候选不得含未处置 P0/P1。P2/P3 是否允许由产品/发布责任人明确决定，不得静默遗留。\\n\\n## 证据清单\\n\\n截图前先建立覆盖矩阵：`coverage group → proof type → covered contract IDs → evidence equivalence key → capture checkpoint → planned artifact`。行为类要求不要为了方便而塞进截图组。\\n\\n证据等价键至少包含：commit/build、页面/路由、UI 状态、数据夹具、设备/OS/viewport、方向、外观、语言、字号/无障碍设置、滚动/焦点/键盘/权限和时变状态。键完全一致的视觉要求共用一次截图；不同键可以在一次批量运行中连续采集，但仍是不同证据。\\n\\n建立 manifest，每项包含：\\n\\n- evidence ID；\\n- covered requirement/contract IDs；\\n- evidence equivalence key；\\n- commit 和构建；\\n- 环境/设备/OS；\\n- 初始数据；\\n- 操作步骤；\\n- 预期与实际；\\n- pass/fail/pending；\\n- 原始文件；\\n- 采集者和时间；\\n- 限制和未覆盖项。\\n- valid / invalidated 状态及失效原因。\\n\\n截图和视频使用稳定命名，例如：`EVID-V03-UI-014-search-empty-iphone-se-max-text.png`。不要只保存“final2.png”。\\n\\n提交变化时先做影响分析。渲染源码、共享壳层、设计令牌、依赖/锁文件、构建配置、夹具或运行环境变化时重采受影响组；无法证明无影响时重采。仅文档变化等情形，若这些输入及视觉等价键其余部分不变，可继承原证据。保留原 capture commit/build，另记录适用的新提交、比较范围、输入哈希/产物身份、分析依据、复核者和限制；不得把旧截图改标为新采集。最终验收允许经核实的继承链，链上任一输入不明则不得复用。\\n\\n## 独立验收\\n\\n独立验收用于正式版本、项目要求、用户请求或高风险交付；局部交付未运行时明确 not performed。验收者接收：固定提交、合同、非回归矩阵、运行方式、证据索引和已知问题；不接收开发者对结果的主观结论作为事实。\\n\\n验收顺序：\\n\\n1. 确认提交、环境和工作区干净度；\\n2. 检查合同完整性与需求追踪；\\n3. 运行自动化门禁；\\n4. 复验关键用户路径和高风险场景；\\n5. 抽查开发证据真实性与对应关系；\\n6. 对视觉风险比较确认基线；\\n7. 输出逐项 `pass/fail/pending/not-applicable`；\\n8. 给出接受、条件接受或拒绝建议。\\n\\n失败时创建限定范围的修复轮次；修复后重新固定提交并复验受影响合同和非回归范围。\\n\\n## 关闭用语\\n\\n推荐：`本版本合同范围已完成；无已知 P0/P1；约定门禁与关键运行路径在所列环境通过；未验证项和允许遗留项见报告。`\\n\\n禁止：`绝对没有 Bug`、`所有设备肯定正常`、`测试都过了所以 UI 没问题`。\\n# Git 与版本控制\\n\\n## 原则\\n\\n- Git 是可恢复和可审计的事实层，不是装饰。\\n- 任何工作开始前记录当前分支、HEAD、未提交改动和 worktree。\\n- 用户既有改动归用户所有；不覆盖、不重置、不顺手整理。\\n- 一个工作包一个明确所有权；并行开发优先隔离 worktree。\\n- 提交前运行与风险相称的验证；每个提交只做一个逻辑变化。\\n\\n## 默认策略\\n\\n小型/单人项目优先短分支或直接在用户指定版本分支上做短增量。中型项目可使用版本集成分支加短期工作包分支。大型项目遵循现有团队策略，不强制改成模板模型。\\n\\n示例：\\n\\n```text\\nmain                         已独立验收的稳定基线\\nrelease/v0.3                 当前版本集成（确有需要时）\\nfeature/v0.3-search          短期工作包\\nfix/v0.3-search-navigation   缺陷修复\\n```\\n\\n长期分支会积累冲突；工作包完成并验证后尽快集成。不要默认 force push、重写共享历史或自动删除分支/worktree。\\n\\n## 基线与交接\\n\\n每个阶段启动包记录：起点 ref、完整 commit SHA、工作目录、允许修改范围。阶段交付记录：终点 SHA、提交清单、未提交状态、验证结果和未集成依赖。\\n\\n产品/设计冻结可建立带注释标签或等价不可变提交，例如 `v0.3-product-baseline`；最终通过建立消费者可理解的版本标签，例如 `v0.3.0` 或项目现行命名。标签不能代替验收报告。\\n\\n## 语义版本\\n\\n- MAJOR：用户/消费者依赖的合同发生破坏性变化；\\n- MINOR：向后兼容的新能力或体验升级；\\n- PATCH：不改变既有合同的修复。\\n\\n0.x 项目也应明确自己的兼容承诺。版本号、标签、构建元数据和版本说明必须指向同一提交。\\n\\n## 提交与差异\\n\\n提交信息使用 `feat/fix/refactor/test/docs/chore` 等类型并解释意图。不要把产品文档冻结、共享架构重构、功能实现和大规模格式化混为一笔。\\n\\n开发完成后至少检查：\\n\\n- `git status` 和完整 diff；\\n- 是否包含密钥、缓存、临时截图或 IDE 私有文件；\\n- 修改是否超出文件所有权；\\n- 测试/构建是否对应当前提交；\\n- 证据是否确实由该提交产生。\\n\\n## 发布状态\\n\\n明确区分：`committed`、`reviewed`、`merged`、`built`、`active candidate`、`validation passed`、`accepted`、`version approved/current`、`predecessors archived`、`released/deployed`、`live verified`、`knowledge closed`。独立验收不代替版本批准，版本批准不证明归档已完成。只有适用状态都有证据时才能报告对应结论。\\n\\n清理分支、worktree、临时库和旧候选物必须在完整汇报后由用户明确确认；优先保留可复核现场。\\n# 生命周期、规模与版本策略\\n\\n## 目录\\n\\n1. 入口类型\\n2. 风险分级\\n3. 阶段裁剪\\n4. 版本迭代\\n5. 救援模式\\n\\n## 1. 入口类型\\n\\n### 新项目\\n\\n从用户自然语言和已有素材提取：用户、问题、目标结果、载体、已知限制、排除项、成功样子。不要要求用户先写 PRD。先生成项目简报，再决定是否需要调研、原型或技术验证。\\n\\n### 既有项目（brownfield）\\n\\n先读取规则链、README、文档、代码入口、测试、Git、运行证据和已知问题。输出：\\n\\n- 当前真实功能与架构；\\n- 文档/代码/运行态冲突；\\n- 不可丢失能力；\\n- 未提交和未验证状态；\\n- 最小治理方案；\\n- 当前适合进入的阶段。\\n\\n不要因为用户说“从头开始”就丢弃已有事实，也不要把现有代码当最终产品定义。\\n\\n### 新版本\\n\\n读取上一版固定标签、版本交接、非回归矩阵、已知问题和当前运行证据。只对本版增量重新讨论，除非增量改变产品定位或基础架构。\\n\\n若发现多个完整版本目录、不一致 PRD、已有未批准候选或待归档前序版本，切换到本 Skill 的版本治理模块并执行内部协作合同。总控模块不自行推断下一名称或建立完整版本副本。\\n\\n### 缺陷/救援\\n\\n冻结现场；记录复现环境、步骤、实际结果、预期结果、影响和证据。先恢复可信基线，再决定局部修复或重构。没有真实复现时标记为待验证，不凭截图或旧描述宣称根因。\\n\\n## 2. 风险分级\\n\\n规模代表交付治理强度，不代表项目价值。分别对以下维度打低/中/高：\\n\\n| 维度 | 低 | 中 | 高 |\\n|---|---|---|---|\\n| 需求不确定性 | 单一清晰目标 | 多流程/部分开放问题 | 核心问题或边界未定 |\\n| 系统耦合 | 独立工具 | 多模块共享状态 | 多平台/多服务/软硬件 |\\n| 数据与安全 | 无敏感持久化 | 本地持久化/账号 | 支付、隐私、控制实体设备 |\\n| 迁移与兼容 | 无既有用户 | 需保留旧数据/行为 | 不可逆迁移或多版本共存 |\\n| 验证复杂度 | 少量路径 | 多状态、多设备/UI | 实机、现场、安全或法规 |\\n| 失败影响 | 可快速回退 | 用户数据/体验受损 | 人身、财务、生产或声誉风险 |\\n\\n建议：\\n\\n- 全低或仅一项中：小型；\\n- 多项中或一项高：中型；\\n- 两项以上高，或任何安全关键项：大型/高风险。\\n\\n不要只用故事数或代码行数分级。向用户说明最关键的 2–4 条依据。\\n\\n## 3. 阶段裁剪\\n\\n### 局部交付与小型项目\\n\\n目标明确、范围局部、可逆，无历史整合或待裁决产品/数据合同变化时，当前会话直接完成：\\n\\n1. 读取相关代码、规则与已有授权，确认局部验收条件；\\n2. 实现并运行与改动风险相称的检查；\\n3. 说明结果、证据、未验证项和后续事项。\\n\\n不强制新会话、完整 PRD、阶段章程或目录脚手架。无 UI 时 UI 合同不适用；没有创建任务时不生成 THREAD_REGISTRY。复用已有简报/Issue/交付说明承载必要范围；同一任务不建立平行权威文档。\\n\\n新建小型产品仍需有足够明确的用户、范围和成功标准，但可在当前会话用简要记录完成 S0–S5。是否独立验收取决于风险、项目要求或用户明确请求；未执行时写 independent acceptance: not performed，不把自测当独立验收。正式版本批准仍由授权负责人决定，局部交付完成不自动代表正式发布。\\n\\n出现重要产品决策、跨版本约束冲突、复杂数据迁移、安全或不可逆风险时升级流程，并说明触发原因；不要仅因文件数量增加而升级。\\n\\n### 中型\\n\\n- 产品与设计对话：S1–S3；\\n- 开发总控对话：S4–S5，在环境允许且已授权时按独立工作包分派子智能体；\\n- 独立验收对话：S6；\\n- 启动/产品对话：S7 和版本决策。\\n\\n### 大型/高风险\\n\\n按风险增加：版本总控、产品/研究、UX、架构/安全、工作包开发、系统测试、独立验收、发布。每个角色必须有独立可交付物；没有独立责任就不要创建角色对话。\\n\\n## 4. 版本迭代\\n\\n### PATCH\\n\\n适用于恢复既有产品合同的缺陷修复，即使修复改变了用户当前观察到的错误行为，也可以是 PATCH。按风险选择局部验证、隔离分支/工作树与复验；仅正式补丁发布才需要标签。增加兼容的新能力才考虑 MINOR，破坏既有承诺则评估 MAJOR。\\n\\n### MINOR\\n\\n适用于向后兼容的新能力或体验改版。先由版本治理确定拓扑、名称和完整候选路径，再建立产品与设计、开发总控、独立验收阶段对话，显式维护上一版非回归矩阵。\\n\\n### MAJOR\\n\\n适用于破坏性行为、架构或数据合同变化。增加迁移、兼容、回滚、安全和发布阶段；不能只通过改版本号掩盖破坏性变化。\\n\\n### 版本状态\\n\\n统一使用：`idea → defining → contracted → building → active_candidate → validation_passed → accepted → version_approved/current → predecessors_archived → released/live_verified`。只有适用时才进入发布/现网状态。不要把 PRD 批准、分支存在、代码完成、测试通过、独立验收、版本批准、归档或已发布混为一谈。\\n\\n## 5. 救援模式\\n\\n当出现大量显眼缺陷、文档互相冲突、多个 AI 同时改动或无法确认当前版本时：\\n\\n1. 暂停新增功能；\\n2. 固定当前 Git 状态和运行环境；\\n3. 建立已知问题与非回归清单；\\n4. 重建关键路径实际运行证据；\\n5. 区分产品缺口、设计缺口、实现缺陷和验收失效；\\n6. 先关闭 P0/P1，再恢复版本开发；\\n7. 把反复出现的问题写入合同或确定性门禁，不只写入聊天提醒。\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 13,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_5\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"find . -maxdepth 4 -type d -iname '*v[0-9]*' -o -iname '*version*' | sort\\\"\",\"aggregated_output\":\"./.agents/skills/project-delivery-suite/VERSION\\n./V3\\n./V4\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "failed",
+      "evidence": {
+        "line": 15,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_6\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'git status --short --branch && git log -8 --oneline --decorate'\",\"aggregated_output\":\"fatal: not a git repository (or any of the parent directories): .git\\n\",\"exit_code\":128,\"status\":\"failed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 17,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_7\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files -g '\\\"'!node_modules'\\\"' -g '\\\"'!vendor'\\\"' -g '\\\"'!dist'\\\"' -g '\\\"'!build'\\\"' | sed -n '1,320p'\\\"\",\"aggregated_output\":\"V3/app.py\\nPROJECT_STATE.md\\nV4/app.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 19,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_8\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg -n -i \\\\\\\"V4|V3|add error|add.*error|错误|批准|approved|candidate|validation|issue\\\\\\\" --glob '\\\"'!node_modules/**'\\\"' --glob '\\\"'!vendor/**'\\\"' --glob '\\\"'!dist/**'\\\"' --glob '\\\"'!build/**'\\\"' . | sed -n '1,320p'\\\"\",\"aggregated_output\":\"./PROJECT_STATE.md:1:current_approved: V3\\n./PROJECT_STATE.md:2:active_candidate: V4\\n./PROJECT_STATE.md:3:validation: failed\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 22,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_10\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"sed -n '1,240p' PROJECT_STATE.md\\\"\",\"aggregated_output\":\"current_approved: V3\\nactive_candidate: V4\\nvalidation: failed\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 25,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_11\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"nl -ba V3/app.py | sed -n '1,260p'\\\"\",\"aggregated_output\":\"     1\\tdef add(a, b): return a + b\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 26,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_12\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"nl -ba V4/app.py | sed -n '1,320p'\\\"\",\"aggregated_output\":\"     1\\tdef add(a, b): return a - b\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 28,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_13\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'diff -u V3/app.py V4/app.py || true'\",\"aggregated_output\":\"--- V3/app.py\\t2026-09-28 17:06:52\\n+++ V4/app.py\\t2026-09-28 17:06:52\\n@@ -1 +1 @@\\n-def add(a, b): return a + b\\n+def add(a, b): return a - b\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 30,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_14\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"find . -maxdepth 2 -type f -not -path './.agents/*' -print -exec wc -l {} \\\\\\\\;\\\"\",\"aggregated_output\":\"./V4/app.py\\n       1 ./V4/app.py\\n./PROJECT_STATE.md\\n       2 ./PROJECT_STATE.md\\n./V3/app.py\\n       1 ./V3/app.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "failed",
+      "evidence": {
+        "line": 32,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_15\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 - <<'PY'\\nimport importlib.util\\nfrom pathlib import Path\\n\\nfor version in ('V3', 'V4'):\\n    path = Path(version) / 'app.py'\\n    spec = importlib.util.spec_from_file_location(f'{version}.app', path)\\n    module = importlib.util.module_from_spec(spec)\\n    spec.loader.exec_module(module)\\n    print(f'{version} add(2, 3) = {module.add(2, 3)\\\"'!r}'\\\"')\\nPY\\\"\",\"aggregated_output\":\"zsh:1: can't create temp file for here document: operation not permitted\\n\",\"exit_code\":1,\"status\":\"failed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "passed",
+      "evidence": {
+        "line": 35,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_17\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -c \\\\\\\"import importlib.util; from pathlib import Path; versions=('V3','V4'); [(lambda s,m,v: (s.loader.exec_module(m), print(f'{v} add(2, 3) = {m.add(2, 3)\\\"'!r}'\\\"')))(importlib.util.spec_from_file_location(f'{v}.app', Path(v)/'app.py'), importlib.util.module_from_spec(importlib.util.spec_from_file_location(f'{v}.app', Path(v)/'app.py')), v) for v in versions]\\\\\\\"\\\"\",\"aggregated_output\":\"V3 add(2, 3) = 5\\nV4 add(2, 3) = -1\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "file_write",
+      "path": "V4/app.py",
+      "evidence": {
+        "line": 37,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_18\",\"type\":\"file_change\",\"changes\":[{\"path\":\"/private/tmp/pds-behavior-20260928/resume_candidate-1/V4/app.py\",\"kind\":\"update\"}],\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "passed",
+      "evidence": {
+        "line": 40,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_20\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"cmp -s V3/app.py V4/app.py && echo 'V3/V4 implementation parity: PASS' || (echo 'V3/V4 implementation parity: FAIL'; diff -u V3/app.py V4/app.py)\\\"\",\"aggregated_output\":\"V3/V4 implementation parity: PASS\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 42,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_21\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'sha256sum V3/app.py V4/app.py'\",\"aggregated_output\":\"1c3eafab9aa411fd3674bb233f9447d5e0d8b808c79c2b22fe7d721729c30f46  V3/app.py\\n1c3eafab9aa411fd3674bb233f9447d5e0d8b808c79c2b22fe7d721729c30f46  V4/app.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "passed",
+      "evidence": {
+        "line": 44,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_22\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -c \\\\\\\"from pathlib import Path; p=Path('V4/app.py'); compile(p.read_text(), str(p), 'exec'); print('syntax: PASS')\\\\\\\"\\\"\",\"aggregated_output\":\"syntax: PASS\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "passed",
+      "evidence": {
+        "line": 46,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_23\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"python3 -c \\\\\\\"import runpy; m=runpy.run_path('V4/app.py'); cases=((2,3,5),(-2,3,1),(0,0,0),(1.5,2.5,4.0)); [(_ for _ in ()).throw(AssertionError(f'add({a}, {b}) => {m[\\\\\\\\\\\\\\\"add\\\\\\\\\\\\\\\"](a,b)\\\"'!r}, expected {expected!r}'\\\"')) if m['add'](a,b)\\\"'!=expected else None for a,b,expected in cases]; print('\\\"'behavior: PASS', ', '.join(f'add({a}, {b})={m[\\\\\\\\\\\\\\\"add\\\\\\\\\\\\\\\"](a,b)\\\"'!r}'\\\"' for a,b,_ in cases))\\\\\\\"\\\"\",\"aggregated_output\":\"behavior: PASS add(2, 3)=5, add(-2, 3)=1, add(0, 0)=0, add(1.5, 2.5)=4.0\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "file_write",
+      "path": "PROJECT_STATE.md",
+      "evidence": {
+        "line": 48,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_24\",\"type\":\"file_change\",\"changes\":[{\"path\":\"/private/tmp/pds-behavior-20260928/resume_candidate-1/PROJECT_STATE.md\",\"kind\":\"update\"}],\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 51,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_26\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'nl -ba PROJECT_STATE.md'\",\"aggregated_output\":\"     1\\tcurrent_approved: V3\\n     2\\tactive_candidate: V4\\n     3\\tvalidation: passed\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 53,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_27\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'nl -ba V4/app.py'\",\"aggregated_output\":\"     1\\tdef add(a, b): return a + b\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 55,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_28\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'find . -maxdepth 1 -mindepth 1 -type d -print | sort'\",\"aggregated_output\":\"./.agents\\n./V3\\n./V4\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "run_check",
+      "result": "passed",
+      "evidence": {
+        "line": 57,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_29\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc 'diff -u V3/app.py V4/app.py; test $? -eq 0 && echo '\\\"'parity: PASS'\\\"\",\"aggregated_output\":\"parity: PASS\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "read",
+      "evidence": {
+        "line": 59,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_30\",\"type\":\"command_execution\",\"command\":\"/bin/zsh -lc \\\"rg --files -g '\\\"'!./.agents/**'\\\"' | sort\\\"\",\"aggregated_output\":\"PROJECT_STATE.md\\nV3/app.py\\nV4/app.py\\n\",\"exit_code\":0,\"status\":\"completed\"}}"
+      }
+    },
+    {
+      "kind": "candidate_selected",
+      "candidate": "V4",
+      "evidence": {
+        "line": 20,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_9\",\"type\":\"agent_message\",\"text\":\"盘点结果已确认：当前目录是一个简化的双版本夹具，`PROJECT_STATE.md` 明确记录 `V3` 为 `current_approved`、`V4` 为 `active_candidate` 且验证失败；当前目录不是 Git 仓库，因此本轮将以候选文件和状态记录为事实，不会伪造提交或版本标签。接下来定位 `add` 的实际失败路径，并先建立 V3 非回归基线。\"}}"
+      }
+    },
+    {
+      "kind": "task_complete",
+      "evidence": {
+        "line": 60,
+        "excerpt": "{\"type\":\"item.completed\",\"item\":{\"id\":\"item_31\",\"type\":\"agent_message\",\"text\":\"V4 的 `add` 错误已修复并验证通过。\\n\\n- 修复：[V4/app.py](/private/tmp/pds-behavior-20260928/resume_candidate-1/V4/app.py:1) 改回 `a + b`\\n- 语法、正负数/零值/浮点用例均通过\\n- V3 与 V4 实现一致，V3 未修改\\n- 状态已更新：[PROJECT_STATE.md](/private/tmp/pds-behavior-20260928/resume_candidate-1/PROJECT_STATE.md:3) → `validation: passed`\\n- 未创建新版本，V3 仍为批准历史版，V4 仍为 active candidate\\n- 未创建提交或访问外部服务\"}}"
+      }
+    }
+  ],
+  "supplemental_trace": {
+    "file": "full-rollout.jsonl",
+    "sha256": "6aae66a87931f8f0d31706c2714161d0cd1f3f14be040ae3d9640d9ab7214a10"
+  }
+}

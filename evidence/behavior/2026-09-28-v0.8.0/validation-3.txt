@@ -1,0 +1,18 @@
+usage: scaffold_delivery.py [-h] --root ROOT --scale {small,medium,large}
+                            --profile {software,ios,web,robotics,hybrid}
+                            [--topology {numbered-lifecycle,legacy-docs}]
+                            --version VERSION [--apply]
+
+Preview or create a minimal governed delivery directory structure.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --root ROOT           Existing project root
+  --scale {small,medium,large}
+  --profile {software,ios,web,robotics,hybrid}
+  --topology {numbered-lifecycle,legacy-docs}
+                        Approved first-project folder topology; legacy-docs
+                        remains the CLI compatibility default; never use this
+                        script for a later full-version copy
+  --version VERSION
+  --apply               Create missing directories

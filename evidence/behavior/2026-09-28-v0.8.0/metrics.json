@@ -1,0 +1,16 @@
+{
+  "actual_model_runs": 11,
+  "covered_cases": 7,
+  "input_tokens": 1197826,
+  "cached_input_tokens_subset": 918016,
+  "output_tokens": 40435,
+  "reasoning_output_tokens_subset": 20572,
+  "total_tokens": 1238261,
+  "summed_run_duration_seconds": 1120.328289270401,
+  "wall_clock_note": "Durations include CLI startup and overlap between independent runs; sum is not total task wall-clock time.",
+  "cost_usd": null,
+  "observer_and_orchestrator_tokens": null,
+  "infrastructure_attempts": 4,
+  "infrastructure_usage": "No completed model usage record returned; do not infer a billed zero.",
+  "comparison_limit": "No repeated multi-seed or historical baseline study. Per-commit single samples and targeted reruns cannot establish stable causal improvements."
+}

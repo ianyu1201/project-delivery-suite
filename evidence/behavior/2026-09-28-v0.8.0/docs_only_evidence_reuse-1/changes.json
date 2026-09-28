@@ -1,0 +1,26 @@
+{
+  "README.md": {
+    "before": {
+      "sha256": "2e28a9825a7d08e359afcf671882c9b89826c7defe5d86c524a5d25879201499",
+      "mode": "0o644",
+      "bytes": 12
+    },
+    "after": {
+      "sha256": "c2a1e3c583c96220481cf80c5c3ef5a62b74f0e2ea68f24782c3642ae0ab3f65",
+      "mode": "0o644",
+      "bytes": 13
+    }
+  },
+  "evidence.md": {
+    "before": {
+      "sha256": "5f3273e50d76ac03fd97953c0f17e3d6109a93fdd9c394d0de6dabf62507da31",
+      "mode": "0o644",
+      "bytes": 133
+    },
+    "after": {
+      "sha256": "a30f447a4eb92f811fa903c14a2f65eee65eae54d6fc3609f3b01d05fcaff7e3",
+      "mode": "0o644",
+      "bytes": 576
+    }
+  }
+}

@@ -1,0 +1,10 @@
+usage: project_snapshot.py [-h] --root ROOT [--max-files MAX_FILES]
+                           [--max-entries MAX_ENTRIES]
+
+Create a bounded, read-only project inventory for delivery planning.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --root ROOT           Existing project directory
+  --max-files MAX_FILES
+  --max-entries MAX_ENTRIES

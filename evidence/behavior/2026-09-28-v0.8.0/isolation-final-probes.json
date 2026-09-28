@@ -1,0 +1,167 @@
+{
+  "transport_sha256": "78a4d875f17de7a40c2d42230db6ca703a13af93242717b8dc91949bdb27feef",
+  "profile": "(version 1)\n(allow default)\n(deny file-write* (require-all (require-not (subpath \"/private/tmp/pds-behavior-20260928/preflight/observer-fixture\")) (require-not (subpath \"/Users/Shared/pds-eval-20260928/observer\")) (require-not (literal \"/dev/null\"))))\n(deny file-read-data (require-all (subpath \"$HOME\") (require-not (subpath \"/private/tmp/pds-behavior-20260928/preflight/observer-fixture\")) (require-not (subpath \"/Users/Shared/pds-eval-20260928/observer\")) (require-not (subpath \"$HOME/.nvm\"))))\n(deny file-read-data (require-all (subpath \"/private/tmp/pds-behavior-20260928\") (require-not (subpath \"/private/tmp/pds-behavior-20260928/preflight/observer-fixture\"))))\n(deny network-outbound (require-not (remote ip \"localhost:56977\")))\n(deny network-bind)\n(deny network-inbound)",
+  "probes": [
+    {
+      "name": "fixture_read",
+      "command": [
+        "/bin/cat",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-fixture/input.txt"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "fixture",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "fixture_write",
+      "command": [
+        "/usr/bin/touch",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-fixture/final-allowed.txt"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "tmp_sibling_read_denied",
+      "command": [
+        "/bin/cat",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-outside/rubric.txt"
+      ],
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "cat: /private/tmp/pds-behavior-20260928/preflight/observer-outside/rubric.txt: Operation not permitted\n",
+      "passed": true
+    },
+    {
+      "name": "tmp_sibling_write_denied",
+      "command": [
+        "/usr/bin/touch",
+        "/private/tmp/pds-behavior-20260928/preflight/observer-outside/final-denied.txt"
+      ],
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "touch: /private/tmp/pds-behavior-20260928/preflight/observer-outside/final-denied.txt: Operation not permitted\n",
+      "passed": true
+    },
+    {
+      "name": "home_rubric_content_read_denied",
+      "command": [
+        "/bin/cat",
+        "$HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/observer-dummy-secret.txt"
+      ],
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "cat: $HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/observer-dummy-secret.txt: Operation not permitted\n",
+      "passed": true
+    },
+    {
+      "name": "home_write_denied",
+      "command": [
+        "/usr/bin/touch",
+        "$HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/final-denied.txt"
+      ],
+      "expected_exit_code": 1,
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "touch: $HOME/project-delivery-suite/evidence/behavior/2026-09-28-v0.8.0/final-denied.txt: Operation not permitted\n",
+      "passed": true
+    },
+    {
+      "name": "runtime_read_exception",
+      "command": [
+        "/bin/cat",
+        "/Users/Shared/pds-eval-20260928/observer/fake-auth.json"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "{\"fake\":true}",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "runtime_write_exception",
+      "command": [
+        "/usr/bin/touch",
+        "/Users/Shared/pds-eval-20260928/observer/final-runtime-allowed.txt"
+      ],
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "passed": true
+    },
+    {
+      "name": "direct_network_denied",
+      "command": [
+        "/usr/bin/curl",
+        "--noproxy",
+        "*",
+        "--max-time",
+        "1",
+        "http://127.0.0.1:56976/"
+      ],
+      "expected_exit_code": 7,
+      "exit_code": 7,
+      "stdout": "",
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (7) Failed to connect to 127.0.0.1 port 56976 after 0 ms: Couldn't connect to server\n",
+      "passed": true
+    },
+    {
+      "name": "non_model_connect_denied",
+      "command": [
+        "/usr/bin/curl",
+        "--max-time",
+        "1",
+        "https://example.invalid/"
+      ],
+      "expected_exit_code": 56,
+      "exit_code": 56,
+      "stdout": "",
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (56) CONNECT tunnel failed, response 403\n",
+      "passed": true
+    },
+    {
+      "name": "plain_http_proxy_denied",
+      "command": [
+        "/usr/bin/curl",
+        "--max-time",
+        "1",
+        "--fail",
+        "--proxy",
+        "http://127.0.0.1:56977",
+        "http://example.invalid/"
+      ],
+      "expected_exit_code": 22,
+      "exit_code": 22,
+      "stdout": "",
+      "stderr": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\ncurl: (22) The requested URL returned error: 403\n",
+      "passed": true
+    }
+  ],
+  "direct_listener_accepted": [],
+  "proxy_decisions": [
+    {
+      "method": "CONNECT",
+      "allowed": false
+    },
+    {
+      "method": "GET",
+      "allowed": false
+    }
+  ],
+  "all_probe_expectations_met": true,
+  "limitations": [
+    "Model destination chatgpt.com:443 is an intentional shared exception; no allowed-model external call is made by these probes.",
+    "Runtime is intentionally readable and writable by CLI and model subprocesses, including any authentication material placed there.",
+    "Home filesystem metadata is visible; protected file contents and writes are denied.",
+    "System paths and the Node runtime tree remain readable. This is a bounded functional isolation check, not an adversarial sandbox security certification."
+  ]
+}
