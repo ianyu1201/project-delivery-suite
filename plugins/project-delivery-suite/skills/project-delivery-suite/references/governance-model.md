@@ -75,7 +75,7 @@ A candidate is safe to materialize only when:
 - the final destination is rechecked as absent immediately before atomic promotion.
 - the exact approved candidate PRD and its approval evidence are written into the candidate without substituting a later draft.
 
-Never represent a branch, patch, partial tree, failed copy, or destination merged with prior content as a complete new version. Do not duplicate nested `.git` directories by default; decide repository topology explicitly.
+Never represent a branch, patch, partial tree, failed copy, or destination merged with prior content as a complete new version. Do not copy source `.git` metadata, including nested repositories, as candidate content; use the authorized Git clone/worktree strategy and explicitly handle submodules. Decide repository topology explicitly.
 
 When the delivery-orchestration module owns lifecycle coordination, the version-governance module returns control after safe materialization. The handoff includes all five roots, topology, current/candidate identities, source lineage, governance-cycle identity, PRD status, semantic coverage status, boundary snapshot, and validation plan. The delivery module owns development chats and independent acceptance; version governance resumes for conformance reconciliation, version approval state, and archival. The two internal modules must never write the candidate concurrently.
 

@@ -34,11 +34,19 @@ def main() -> int:
     fallback = skill_root / "assets" / "MINIMUM_PRD.md"
     assert fallback.is_file()
     assert "assets/MINIMUM_PRD.md" in text
-    assert "同一版本只维护一份现役 PRD" in text
-    assert "validate_semantic_coverage.py" in text
-    assert "prd_skill_unavailable" in (skill_root / "evals" / "scenarios.json").read_text(
-        encoding="utf-8"
-    )
+    # Validate navigability and data shape, not exact instruction wording.
+    for document in [skill_root / "SKILL.md", *sorted((skill_root / "references").glob("*.md"))]:
+        for target in re.findall(r"\[[^\]]+\]\(([^)]+)\)", document.read_text(encoding="utf-8")):
+            if "://" not in target and not target.startswith("#"):
+                resolved = (document.parent / target.split("#", 1)[0]).resolve()
+                assert resolved.is_relative_to(skill_root.resolve()), f"reference outside Skill: {target}"
+                assert resolved.exists(), f"broken reference in {document.name}: {target}"
+    cases = load_json(skill_root / "evals" / "behavior-cases.json")["cases"]
+    assert len({case["id"] for case in cases}) == len(cases)
+    for case in cases:
+        assert case["prompt"] and case["fixture_files"] and case["required"]
+        for path in case["fixture_files"]:
+            assert not Path(path).is_absolute() and ".." not in Path(path).parts
     assert (ROOT / "LICENSE").read_text(encoding="utf-8").startswith("MIT License")
     return 0
 

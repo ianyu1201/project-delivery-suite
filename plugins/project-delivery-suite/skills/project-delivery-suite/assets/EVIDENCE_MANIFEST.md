@@ -13,6 +13,11 @@
 | Evidence ID | Covered Contract IDs | Evidence Equivalence Key | Commit/Build | Device/Environment | Initial Data | Steps | Expected | Actual | Result | Validity | File | Captured At |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 
+## 跨提交继承（仅有可核实无影响证据时）
+
+| Evidence ID | Original Capture Commit/Build | Applicable Commit | Compared Inputs/Hashes | Analysis/Reviewer | Limitations |
+|---|---|---|---|---|---|
+
 ## 失效记录
 
 | Evidence ID / Coverage Group | Invalidated By | Reason | Affected Contract IDs | Recapture Status |

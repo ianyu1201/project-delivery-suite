@@ -45,3 +45,4 @@ jobs:
           python plugins/project-delivery-suite/skills/project-delivery-suite/scripts/scaffold_delivery.py --help >/dev/null
           python plugins/project-delivery-suite/skills/project-delivery-suite/scripts/audit_versions.py --help >/dev/null
           python plugins/project-delivery-suite/skills/project-delivery-suite/scripts/validate_semantic_coverage.py --help >/dev/null
+          python plugins/project-delivery-suite/skills/project-delivery-suite/scripts/evaluate_behavior.py --help >/dev/null
