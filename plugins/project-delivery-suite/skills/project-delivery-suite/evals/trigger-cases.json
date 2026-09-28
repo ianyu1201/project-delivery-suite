@@ -20,6 +20,14 @@
     {
       "query": "只把一个旧文件夹永久删除。",
       "should_trigger": false
+    },
+    {
+      "query": "只修复这个函数的边界条件并运行对应测试。",
+      "should_trigger": false
+    },
+    {
+      "query": "使用 Project Delivery Suite，按已经批准的方案修复这个小工具。",
+      "should_trigger": true
     }
   ]
 }

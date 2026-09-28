@@ -20,7 +20,10 @@
 - 独立验收：pending / rejected / accepted
 - 版本批准：pending / approved
 - 归档状态：not-applicable / pending / organized
-- 语义覆盖：pending / semantic_coverage_passed / semantic_coverage_limited / semantic_coverage_failed
+- 结构检查：pending / valid / limited / invalid
+- 引用检查：not_checked / verified / failed
+- 语义复核人、固定清单与证据：
+- 语义覆盖：not-applicable / pending / semantic_coverage_passed / semantic_coverage_limited / semantic_coverage_failed
 - Anti-drift：limited / enforced
 - 边界快照：missing / attached
 - 版本状态：idea / defining / contracted / building / active_candidate / validation_passed / accepted / version_approved-current / predecessors_archived / released-live_verified

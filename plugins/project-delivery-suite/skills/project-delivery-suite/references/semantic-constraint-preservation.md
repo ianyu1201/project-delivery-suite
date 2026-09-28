@@ -45,28 +45,50 @@ source_authority
 
 主题、颜色、材质或动效探索默认不授权修改信息架构、页面布局、导航、入口数量/顺序/语义、组件几何、业务行为或已批准平台技术。只有稳定 ID 或明确 scope 进入 `allowed_changes` 后才可改变。
 
-## 5. 机械门禁
+## 5. 分层验证与兼容迁移
 
-使用临时 JSON 调用：
+三个层次分别记录，不能互相替代：
+
+1. **结构检查**：字段、唯一 ID、合法处置、来源 authority、边界分类无冲突。`structure_validation_status=valid` 仅说明结构完整。
+2. **引用检查**：提供 `--root <project-root>`，检查固定清单、来源/目标文件及哈希、原文与目标摘录。`reference_validation_status=verified` 仅说明本轮读取的引用一致，不证明内容获得批准。
+3. **语义复核**：Agent 从权威来源逐项核对清单完整性、等价迁移、批准人权限和真实取代决定，记录审阅者、来源固定点、结果与未决项。未做独立验收时不得声称独立复核。只有前两层通过且本层无未决项时，总控才能记录 `semantic_coverage_passed`。
 
 ```bash
-python3 <skill-dir>/scripts/validate_semantic_coverage.py <coverage.json>
+python3 <skill-dir>/scripts/validate_semantic_coverage.py <coverage.json> --root <project-root>
 ```
 
-脚本检查：必需字段、稳定 ID、authority 携带、合法处置、目标证据、保真分类、明确取代证据、边界快照、入口可见性和归档资格。`generalized` 不是等价；`unknown` 至少是 limited；高影响 unresolved 为 failed。
+不提供 `--root` 时仅做结构检查，引用状态为 `not_checked`。schema v2 不再返回 `semantic_coverage_status`、`anti_drift_status` 或 `archive_allowed`；旧消费者必须改为读取上述分层结果。返回码 0 只表示请求的机械检查通过。脚本始终返回 `semantic_review_status=required`；`semantic_archive_preconditions=pending_review` 也不是归档授权。
 
-语义覆盖是归档前置门，不能要求“先去权威化再验证”。因此 `semantic_coverage_passed` 可以在 `historical_deauthorized=false` 时成立并给出归档预检资格；只有完成单一入口收敛、历史降权和入口约束暴露后，才可报告 `anti-drift enforced`。
+文件引用使用相对 root 的 `file` 和文件字节 SHA-256 `sha256`；来源引用保留 version/authority，目标保留 excerpt/fidelity。明确取代的 `supersession.evidence_ref` 同样引用一份固定决策文件；其存在和哈希匹配不能证明批准有效。
 
-只有 `semantic_coverage_passed` 才允许进入以下后续门禁：
+覆盖输入必须引用一份**在迁移之前已从权威来源复核并固定**的清单：
 
-- 按已批准的精确路径执行旧批准材料去权威化或归档；
-- 发放下游设计/开发/验收启动包；
-- 在历史已经降权且所有入口字段完整后报告 `anti-drift enforced`；
-- 把新版本标记为可进入最终批准门禁。
+```json
+{
+  "inventory": {"file": "existing-evidence/approved-constraints.json", "sha256": "<64位小写哈希>"},
+  "constraints": [],
+  "boundary_snapshot": {}
+}
+```
 
-## 6. 最小文档
+示意省略了实际约束和边界字段；清单文件的结构为：
 
-覆盖 JSON 可以存在于系统临时目录并在验证后删除。把必要结果写入项目已有 PRD、设计规格、工程合同/ADR、AGENTS、README/PROJECT_BRIEF 和 PROJECT_STATE。只有项目已有约定或用户明确要求时才长期保存独立矩阵。
+```json
+{
+  "constraint_ids": ["C-PLATFORM-01", "C-DATA-01"],
+  "sources": [{"file": "approved/contract.md", "sha256": "<64位小写哈希>"}]
+}
+```
+
+脚本比较清单与覆盖记录的 ID 集合，拒绝整条记录遗漏、额外 ID、未登记来源、文件变动及伪造摘录。若清单自身漏掉旧要求，脚本仍无法发现；不得用同一份未经复核的抽取结果同时充当基准与验证对象。等价性和批准真实性必须回到来源确认。
+
+纯新项目无旧批准材料时，可记录语义迁移 `not-applicable` 并说明原因，不得捏造约束来通过非空清单校验。存在旧材料但尚未盘清时不能用 `not-applicable` 绕过门禁。
+
+语义通过后才可发放涉及历史约束的下游启动包，并进入版本批准门禁。归档还需要有效版本批准、精确移动范围授权、候选完整性验证。只有单一入口、历史降权、实际入口中的冻结项可发现、边界快照和语义复核均成立时，才报告 `anti-drift enforced`；任一状态不得由输入布尔值自动证明。
+
+## 6. 最小文档与证据留存
+
+优先引用已有固定证据和权威文件。工作中的覆盖 JSON 可临时存在，但交接/归档所依据的固定清单、来源哈希、检查结果和语义复核结论须保存在已有证据位置或可恢复 Git 固定点，不得在删除唯一证据后继续标记门禁通过。无需另建平行治理文档。
 
 ## 7. 失败处理
 

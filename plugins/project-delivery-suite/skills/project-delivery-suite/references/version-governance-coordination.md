@@ -119,7 +119,7 @@ boundary_snapshot_status
 
 1. 总控完成入口、范围和项目身份锁定。
 2. 版本治理只读盘点，返回拓扑、当前批准版本和命名提案。
-3. 版本治理盘点旧批准硬约束，完成跨文档路由并运行语义覆盖门禁。
+3. 版本治理盘点并固定旧批准约束清单，完成跨文档路由；执行结构/引用检查，再结合来源记录语义复核结论。脚本成功不自动设置 semantic_coverage_passed。
 4. 用户或授权产品负责人批准唯一候选 PRD；其他工程/设计约束由对应 authority 文件承载。
 5. 版本治理在唯一 staging 中物化完整候选，通过 manifest 后提升并返回 `candidate_materialized`。
 6. 总控只在 `semantic_coverage_passed` 且边界快照附带后启动开发、测试和独立验收。

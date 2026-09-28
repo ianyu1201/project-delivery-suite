@@ -5,7 +5,16 @@
 
 Project Delivery Suite 是一套面向非专业开发者和 AI 协作团队的项目交付 Skill。它把项目启动、需求整理、开发会话、验证验收、版本治理和历史归档连接成一条连续流程，让用户只通过自然语言，也能把一个想法或混乱的旧项目推进为可开发、可验收、可继续迭代的完整版本。
 
-当前版本：`0.7.0`。用户只需要使用一个 Skill：`$project-delivery-suite`。
+当前版本：`0.8.0`。用户只需要使用一个 Skill：`$project-delivery-suite`。
+
+## 0.8.0 的流程与验证变化
+
+- 明确实现请求与既有授权持续有效，普通步骤切换不重复确认；只读审阅仍保持只读。
+- 局部交付可在当前任务完成，按需要生成文档、拆任务和独立验收。
+- 目录创建先全量预检，拒绝路径中间符号链接和文件冲突。
+- 语义校验器 schema v2 分开报告结构/引用检查，支持固定约束清单、文件哈希和摘录核对；机械成功不等于语义通过或归档授权。旧版输出字段迁移见 [语义验证说明](plugins/project-delivery-suite/skills/project-delivery-suite/references/semantic-constraint-preservation.md)。
+- 视觉证据在有可核实的无影响分析时允许跨提交继承，保留原采集身份。
+- 增加 [行为评估用例与记录评分协议](plugins/project-delivery-suite/skills/project-delivery-suite/references/behavior-evaluation.md)。CI 验证评分器和合成记录，不代表真实模型评测已经通过；模型效果需按协议另行运行。
 
 ## 解决什么问题
 

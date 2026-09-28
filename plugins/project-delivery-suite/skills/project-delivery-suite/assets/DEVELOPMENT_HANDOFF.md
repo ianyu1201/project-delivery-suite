@@ -36,7 +36,7 @@
 - `prohibited_changes`：
 - `open_decisions`：
 - `source_authority`：
-- `semantic_coverage_status`：必须为 `semantic_coverage_passed`
+- `semantic_coverage_status`：涉及旧批准约束时，记录结构/引用检查及来源语义复核均完成的 `semantic_coverage_passed`；无旧批准约束的纯新项目可记录有依据的 `not-applicable`。脚本返回码不能替代复核结论。
 
 ## 实施规则
 

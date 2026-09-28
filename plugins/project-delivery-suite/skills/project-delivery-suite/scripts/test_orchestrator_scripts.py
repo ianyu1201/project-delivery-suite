@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import tempfile
+import os
+from unittest import mock
 import unittest
 from pathlib import Path
 
@@ -41,6 +43,67 @@ class ScaffoldDeliveryTests(unittest.TestCase):
             )
         }
         self.assertIn("docs/20_releases/release-2026-08", paths)
+
+    def test_intermediate_symlink_blocks_entire_plan(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            root, outside = base / "project", base / "outside"
+            root.mkdir(); outside.mkdir()
+            (root / "docs").symlink_to(outside, target_is_directory=True)
+            with self.assertRaises(ValueError):
+                scaffold_delivery.create_directories(root, [Path("first"), Path("docs/next")])
+            self.assertFalse((root / "first").exists())
+            self.assertEqual(list(outside.iterdir()), [])
+
+    def test_late_file_conflict_is_detected_before_creation(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "docs").write_text("user data")
+            with self.assertRaises(ValueError):
+                scaffold_delivery.create_directories(root, [Path("first"), Path("docs/next")])
+            self.assertFalse((root / "first").exists())
+            self.assertEqual((root / "docs").read_text(), "user data")
+
+    def test_safe_creation_can_be_repeated(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            plan = [Path("docs/product"), Path("evidence/v1")]
+            created, existing = scaffold_delivery.create_directories(root, plan)
+            self.assertEqual(len(created), 2)
+            self.assertEqual(existing, [])
+            created, existing = scaffold_delivery.create_directories(root, plan)
+            self.assertEqual(created, [])
+            self.assertEqual(len(existing), 2)
+
+    def test_broken_link_and_traversal_are_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "broken").symlink_to(root / "absent")
+            for path in (Path("broken/child"), Path("../outside"), root / "absolute"):
+                with self.subTest(path=path), self.assertRaises(ValueError):
+                    scaffold_delivery.preflight(root, [path])
+
+    def test_link_introduced_after_preflight_is_not_followed(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            base = Path(temporary)
+            root, outside = base / "project", base / "outside"
+            root.mkdir(); outside.mkdir()
+            (root / "docs").mkdir()
+            real_open = os.open
+            switched = False
+            def replace_on_open(path, flags, *args, **kwargs):
+                nonlocal switched
+                if path == "docs" and not switched:
+                    switched = True
+                    (root / "docs").rmdir()
+                    (root / "docs").symlink_to(outside, target_is_directory=True)
+                return real_open(path, flags, *args, **kwargs)
+            with mock.patch.object(os, "open", side_effect=replace_on_open) as patched:
+                with mock.patch.object(os, "supports_dir_fd", os.supports_dir_fd | {patched}):
+                    with self.assertRaises(OSError):
+                        scaffold_delivery.create_directories(root, [Path("docs/child")])
+            self.assertTrue(switched)
+            self.assertEqual(list(outside.iterdir()), [])
 
 
 class ProjectSnapshotTests(unittest.TestCase):

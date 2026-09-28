@@ -1,0 +1,162 @@
+{
+  ".agents/skills/project-delivery-suite/.gitignore": {
+    "sha256": "997d3b4df2681c5f1200aa84407aa89b45e6a7cf691a99e8b3cef6f9c77246b5",
+    "mode": "0o644",
+    "bytes": 58
+  },
+  ".agents/skills/project-delivery-suite/LICENSE": {
+    "sha256": "ef6fdff085828682eed07c44271cdc62dd16b9df2b760bc5356f08f3d60eba82",
+    "mode": "0o644",
+    "bytes": 1092
+  },
+  ".agents/skills/project-delivery-suite/SKILL.md": {
+    "sha256": "aa26a8c2ce9454cbe0be7ea0f53e88cba55eb56a487d22ba3459093d796e5297",
+    "mode": "0o644",
+    "bytes": 7137
+  },
+  ".agents/skills/project-delivery-suite/VERSION": {
+    "sha256": "a66780da23103beaf12432b418508966b31a2a3a787f9468a5b6cdaa8667c1ef",
+    "mode": "0o644",
+    "bytes": 6
+  },
+  ".agents/skills/project-delivery-suite/agents/openai.yaml": {
+    "sha256": "1bc55075d1c9d734b764ec3e29769996f4b5b49e9ebd6bc71be40fadda19663a",
+    "mode": "0o644",
+    "bytes": 374
+  },
+  ".agents/skills/project-delivery-suite/assets/ACCEPTANCE_REPORT.md": {
+    "sha256": "07a20b2e4df39ccefa3de504f7425c3b4e4c6968a793b52eed0e3bb082171245",
+    "mode": "0o644",
+    "bytes": 1136
+  },
+  ".agents/skills/project-delivery-suite/assets/DEVELOPMENT_HANDOFF.md": {
+    "sha256": "7c424ca11479efaa2d36b7977a083f3e68e728c816b667c9a15002f25e2ad393",
+    "mode": "0o644",
+    "bytes": 2095
+  },
+  ".agents/skills/project-delivery-suite/assets/EVIDENCE_MANIFEST.md": {
+    "sha256": "8d9421785acc6619018aeda146f9460f258df433c03c7b434710139dd7cfa65f",
+    "mode": "0o644",
+    "bytes": 1325
+  },
+  ".agents/skills/project-delivery-suite/assets/MINIMUM_PRD.md": {
+    "sha256": "596aff906e98ec4c19433f311fb288b0b6ecd4402f9be52d5b385b096c24221b",
+    "mode": "0o644",
+    "bytes": 2964
+  },
+  ".agents/skills/project-delivery-suite/assets/PROJECT_BRIEF.md": {
+    "sha256": "e7f6d6e25185cc529f47705ac8401ae921ba5b72633dcc547e268aadab17cfd0",
+    "mode": "0o644",
+    "bytes": 1150
+  },
+  ".agents/skills/project-delivery-suite/assets/PROJECT_STATE.md": {
+    "sha256": "2e9b0d7e09271a561f6832bbce6feaee46ec478818029bed3c134ef5227fc87e",
+    "mode": "0o644",
+    "bytes": 2030
+  },
+  ".agents/skills/project-delivery-suite/assets/RELEASE_CHARTER.md": {
+    "sha256": "af3eb9f6ef1ef3271d98dde8ce8d779f002648104e9b9792e3e367b92bd7a778",
+    "mode": "0o644",
+    "bytes": 1109
+  },
+  ".agents/skills/project-delivery-suite/assets/THREAD_REGISTRY.md": {
+    "sha256": "ef9174f9f2bdddf336e5d7b6321eadf7ef26fc7e5685dec3d4ea512bf6d1910e",
+    "mode": "0o644",
+    "bytes": 504
+  },
+  ".agents/skills/project-delivery-suite/assets/UI_IMPLEMENTATION_AND_RUNTIME_ACCEPTANCE_CONTRACT.md": {
+    "sha256": "7a20ffbffaf1dd44eb75d102a765e3fc12e057cf6c494516b9f0ba3d0dcf0f6c",
+    "mode": "0o644",
+    "bytes": 3839
+  },
+  ".agents/skills/project-delivery-suite/assets/current-version-docs-template.md": {
+    "sha256": "5772a7c3025228591c44146ce98426821293e01b8ac43488742f5b2415616493",
+    "mode": "0o644",
+    "bytes": 3683
+  },
+  ".agents/skills/project-delivery-suite/references/artifact-and-folder-governance.md": {
+    "sha256": "01d5fae9b1f0ab427200ce536cf1b2513870d3fc24ce399faca5528316eb26a5",
+    "mode": "0o644",
+    "bytes": 6287
+  },
+  ".agents/skills/project-delivery-suite/references/conversation-orchestration.md": {
+    "sha256": "37d195072a6f6a685935905dc3b33866986b7f82f60f5835265e431b9985466d",
+    "mode": "0o644",
+    "bytes": 5003
+  },
+  ".agents/skills/project-delivery-suite/references/git-and-release-control.md": {
+    "sha256": "9498969e159b133b117855317447858090b9845ab08057ebb146c7f49a4ab0fe",
+    "mode": "0o644",
+    "bytes": 2793
+  },
+  ".agents/skills/project-delivery-suite/references/governance-model.md": {
+    "sha256": "3e6147b97ee151a84c5a738bc4f04ded997fc2bf38fd7fcd9a8b51b5d4d4bb3e",
+    "mode": "0o644",
+    "bytes": 15188
+  },
+  ".agents/skills/project-delivery-suite/references/lifecycle-and-scaling.md": {
+    "sha256": "aef45c4d16d3f2361791d813b2b6ce4df46fa5e5abb96ef1bcd4be4243fd7a01",
+    "mode": "0o644",
+    "bytes": 6329
+  },
+  ".agents/skills/project-delivery-suite/references/novice-intake-and-scope-control.md": {
+    "sha256": "cdf3aff9f7cc3923c991b1ccc51a8b02c0077cd87fc45e2d5ee99f226a64c9f3",
+    "mode": "0o644",
+    "bytes": 3860
+  },
+  ".agents/skills/project-delivery-suite/references/project-profiles.md": {
+    "sha256": "abf34ff1544dee0639b8235c78d34a7b28bc9e3dfbefc8a3ebdd1659cb85ee90",
+    "mode": "0o644",
+    "bytes": 2180
+  },
+  ".agents/skills/project-delivery-suite/references/quality-and-evidence.md": {
+    "sha256": "129526cbce44dafb502d2abbd3617d221973295769cdba084270e6d2747791a5",
+    "mode": "0o644",
+    "bytes": 4824
+  },
+  ".agents/skills/project-delivery-suite/references/semantic-constraint-preservation.md": {
+    "sha256": "493dbe403737b26eb2ba37507e735b7c2f6a276799ec96aa29ad4a8d1d0fcc2d",
+    "mode": "0o644",
+    "bytes": 6139
+  },
+  ".agents/skills/project-delivery-suite/references/ui-implementation-and-runtime-acceptance.md": {
+    "sha256": "ca3a8b1cf8cd761b9adb7b9f6fdfba9d367dada316497a394503ff90e65e1d96",
+    "mode": "0o644",
+    "bytes": 9394
+  },
+  ".agents/skills/project-delivery-suite/references/version-governance-coordination.md": {
+    "sha256": "25de85e88777c48a8b7315256fed071465c769e227fc16ea1c7ef80f3bec0530",
+    "mode": "0o644",
+    "bytes": 5357
+  },
+  ".agents/skills/project-delivery-suite/scripts/audit_versions.py": {
+    "sha256": "ee5fd92e02d10b4e0558dc7001d31e2618e16b4c07969a3704a91498157af061",
+    "mode": "0o644",
+    "bytes": 77779
+  },
+  ".agents/skills/project-delivery-suite/scripts/project_snapshot.py": {
+    "sha256": "70472262146292078a706108c2a776481d7dac594f421baee9ac2161b033a5e0",
+    "mode": "0o644",
+    "bytes": 6419
+  },
+  ".agents/skills/project-delivery-suite/scripts/scaffold_delivery.py": {
+    "sha256": "fd5bc8bca365cc31fa8808543c30ef228f1907b016d8326ea3ab63c5c4064683",
+    "mode": "0o644",
+    "bytes": 8387
+  },
+  ".agents/skills/project-delivery-suite/scripts/validate_semantic_coverage.py": {
+    "sha256": "c0947294f5904543b095edc75a4d452ed7881bf09e6cea7eba52163a21f9826a",
+    "mode": "0o644",
+    "bytes": 13457
+  },
+  "README.md": {
+    "sha256": "2e28a9825a7d08e359afcf671882c9b89826c7defe5d86c524a5d25879201499",
+    "mode": "0o644",
+    "bytes": 12
+  },
+  "evidence.md": {
+    "sha256": "5f3273e50d76ac03fd97953c0f17e3d6109a93fdd9c394d0de6dabf62507da31",
+    "mode": "0o644",
+    "bytes": 133
+  }
+}

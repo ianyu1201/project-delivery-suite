@@ -1,0 +1,54 @@
+[
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": true
+  },
+  {
+    "method": "CONNECT",
+    "allowed": false
+  }
+]

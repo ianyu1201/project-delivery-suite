@@ -1,0 +1,1 @@
+{"canonical": "0.8.0", "codex_plugin": "0.8.0", "skill_snapshot": "0.8.0"}

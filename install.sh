@@ -12,4 +12,4 @@ fi
 codex plugin marketplace add "$marketplace_url"
 codex plugin add "$plugin_ref"
 
-echo "Installed $plugin_ref. Start a new Codex task to load both Skills."
+echo "Installed $plugin_ref. Start a new Codex task to load Project Delivery Suite."

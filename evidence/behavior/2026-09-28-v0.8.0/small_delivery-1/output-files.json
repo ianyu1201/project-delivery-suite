@@ -1,0 +1,4 @@
+{
+  "README.md": "无 UI、无持久化、无历史整合的单文件命令行程序。",
+  "cli.py": "import argparse\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Print a greeting.\")\n    parser.parse_args()\n    print(\"hello\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}

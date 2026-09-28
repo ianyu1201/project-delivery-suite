@@ -1,0 +1,18 @@
+{
+  "rules": [
+    "personal home prefix replaced with $HOME",
+    "stderr URL query strings removed"
+  ],
+  "logs": {
+    "raw-trace.jsonl": {
+      "original_sha256": "bfeb6c225015be4581140ba34b98b3aeb69b745c1421785aedc219ca2e7a3e19",
+      "published_sha256": "bfeb6c225015be4581140ba34b98b3aeb69b745c1421785aedc219ca2e7a3e19",
+      "changed": false
+    },
+    "stderr.txt": {
+      "original_sha256": "21ad7f69b15df84add92e8a716f7ef03d2a857ef4b26d86be5d1f269eb53bd42",
+      "published_sha256": "a854d8c97342de971673c6ff160de4862ba6e1ed642ade19179f9e7df6872a87",
+      "changed": true
+    }
+  }
+}

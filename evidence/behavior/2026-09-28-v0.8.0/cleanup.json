@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-09-28T08:51:53.292766+00:00",
+  "authorization": "User explicitly authorized only these verified delivery copies",
+  "coverage": "ZIP and patches verified against pinned Git objects; unique report retained byte-for-byte as prior-improvement-report.md",
+  "deleted_files": [
+    {
+      "path": "$OUTPUTS/project-delivery-suite-v0.8.0.zip",
+      "sha256": "1ce7d2aedd493977c4e8bc7fbf4fab5c73cd3eb3c983bad1c7a7292e34abe356"
+    },
+    {
+      "path": "$OUTPUTS/project-delivery-suite-v0.8.0/0001-fix-enforce-path-boundaries-and-distinguish-evidence.patch",
+      "sha256": "987d1174743454e44bb03b671206117c40895a2d717c87d6c6c74e92b8299d71"
+    },
+    {
+      "path": "$OUTPUTS/project-delivery-suite-v0.8.0/0002-feat-add-local-delivery-and-auditable-behavior-evalu.patch",
+      "sha256": "d1684d1c1cce6b891d355ef39c9dd3fa97d8041704a8274789d4bee15ae63e27"
+    },
+    {
+      "path": "$OUTPUTS/project-delivery-suite-改进报告.md",
+      "sha256": "237a9dbb041099ae2fca37da6c05ab48dce9fd02bf3955005b989e1dc6ab4d19"
+    }
+  ],
+  "deleted_patch_directory": true,
+  "unknown_children_preserved": [],
+  "outputs_directory_preserved": true,
+  "other_output_names_preserved": []
+}

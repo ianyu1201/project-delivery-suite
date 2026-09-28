@@ -1,0 +1,14 @@
+{
+  "cli.py": {
+    "before": {
+      "sha256": "b80792336156c7b0f7fe02eeef24610d2d52a10d1810397744471d1dc5738180",
+      "mode": "0o644",
+      "bytes": 15
+    },
+    "after": {
+      "sha256": "0bb6d615cdce8f580a7b64003c118bf23b8f0e61da896ed56ba1c0deb2abf6bb",
+      "mode": "0o644",
+      "bytes": 183
+    }
+  }
+}

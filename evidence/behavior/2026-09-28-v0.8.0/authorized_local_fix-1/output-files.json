@@ -1,0 +1,4 @@
+{
+  "app.py": "def add(a, b): return a + b\n",
+  "test_app.py": "import unittest\nfrom app import add\nclass AddTest(unittest.TestCase):\n    def test_add(self): self.assertEqual(add(2, 3), 5)\n\n    def test_add_with_negative_number(self):\n        self.assertEqual(add(-2, 3), 1)\n"
+}

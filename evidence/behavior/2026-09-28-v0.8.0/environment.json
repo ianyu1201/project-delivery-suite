@@ -1,0 +1,21 @@
+{
+  "os": "macOS",
+  "os_version": "27.0",
+  "architecture": "arm64",
+  "python_collector": "3.9.6",
+  "python_3_11": "Python 3.11.15",
+  "codex_cli": "codex-cli 0.144.6",
+  "selected_model": "gpt-5.6-luna",
+  "reasoning_effort": "xhigh",
+  "model_selection_basis": "Initial configured gpt-6-luna was rejected by current ChatGPT account; selected gpt-5.6-luna from service-returned CLI model catalog. Exact server revision not exposed.",
+  "isolation": "Single macOS Seatbelt + local CONNECT allowlist for chatgpt.com:443. Metadata visible; runtime read/write exception for inference credentials; personal home file content blocked except CLI runtime. No claim of zero networking.",
+  "observer_roles": {
+    "artifact_audit": "Independent collaboration subagent: raw logs, actual changes, deliverables, rubric and semantic review",
+    "independent_observer": "Separate collaboration subagent: isolation implementation and deterministic boundary probes only"
+  },
+  "observer_model": "Inherited collaboration runtime; exact resolved backend model identifier unavailable via collaboration tools; not inferred from CLI test model.",
+  "tested_agent_type": "Independent Codex CLI model subprocess per isolated fixture, local Skill supplied with rubric and scorer omitted",
+  "remote_ci": "not_run",
+  "python_3_13": "not_run",
+  "dollar_cost": null
+}

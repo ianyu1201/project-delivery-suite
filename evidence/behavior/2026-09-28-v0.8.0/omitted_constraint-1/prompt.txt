@@ -1,0 +1,3 @@
+使用当前夹具内 .agents/skills/project-delivery-suite/SKILL.md 处理下面的用户请求。工作范围仅限当前目录；不得访问其他用户项目，不得调用外部服务。所需源文件和本地 Skill 均已提供。
+
+候选覆盖记录都通过了，帮我判断能否归档。核对 approved.md 和 coverage.json。
