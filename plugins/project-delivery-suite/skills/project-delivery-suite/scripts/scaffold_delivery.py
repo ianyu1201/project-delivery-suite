@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import os
+import stat
 from pathlib import Path
 
 
@@ -87,6 +89,63 @@ def relative_paths(scale: str, profile: str, version: str, topology: str) -> lis
     return sorted(paths, key=lambda p: p.as_posix())
 
 
+def preflight(root: Path, planned: list[Path]) -> tuple[Path, list[str]]:
+    """Validate the entire plan before creating anything; never follow child links."""
+    if root.is_symlink() or not root.is_dir():
+        raise ValueError(f"Project root must be an existing non-symlink directory: {root}")
+    root = root.resolve(strict=True)
+    existing = []
+    for relative in planned:
+        if relative.is_absolute() or not relative.parts or any(p in {".", ".."} for p in relative.parts):
+            raise ValueError(f"Unsafe relative path: {relative}")
+        target = root
+        for part in relative.parts:
+            target = target / part
+            try:
+                mode = target.lstat().st_mode
+            except FileNotFoundError:
+                continue
+            if stat.S_ISLNK(mode) or not stat.S_ISDIR(mode):
+                raise ValueError(f"Expected a directory without symlinks: {target}")
+        if (root / relative).exists():
+            existing.append(relative.as_posix())
+    return root, existing
+
+
+def create_directories(root: Path, planned: list[Path]) -> tuple[list[str], list[str]]:
+    root, existing = preflight(root, planned)
+    # Fail closed on platforms without descriptor-relative, no-follow traversal.
+    if not (hasattr(os, "O_NOFOLLOW") and hasattr(os, "O_DIRECTORY")
+            and os.open in os.supports_dir_fd and os.mkdir in os.supports_dir_fd):
+        raise ValueError("Safe directory creation is unsupported on this platform; preview only")
+    expected = root.stat()
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    root_fd = os.open(root, flags)
+    created = []
+    try:
+        actual = os.fstat(root_fd)
+        if (actual.st_dev, actual.st_ino) != (expected.st_dev, expected.st_ino):
+            raise ValueError("Project root changed after preflight")
+        for relative in planned:
+            current_fd = os.dup(root_fd)
+            try:
+                for part in relative.parts:
+                    try:
+                        os.mkdir(part, dir_fd=current_fd)
+                    except FileExistsError:
+                        pass
+                    next_fd = os.open(part, flags, dir_fd=current_fd)
+                    os.close(current_fd)
+                    current_fd = next_fd
+                if relative.as_posix() not in existing:
+                    created.append(relative.as_posix())
+            finally:
+                os.close(current_fd)
+    finally:
+        os.close(root_fd)
+    return created, existing
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, help="Existing project root")
@@ -109,23 +168,17 @@ def main() -> None:
     args = parser.parse_args()
 
     root = Path(args.root).expanduser().absolute()
-    if root.is_symlink() or not root.is_dir():
-        raise SystemExit(f"Project root must already exist: {root}")
     try:
         version = validate_component(args.version)
-    except ValueError as error:
-        raise SystemExit(str(error)) from error
-
-    planned = relative_paths(args.scale, args.profile, version, args.topology)
-    created: list[str] = []
-    existing: list[str] = []
-    for relative in planned:
-        target = root / relative
-        if target.exists():
-            existing.append(relative.as_posix())
-        elif args.apply:
-            target.mkdir(parents=True, exist_ok=False)
-            created.append(relative.as_posix())
+        planned = relative_paths(args.scale, args.profile, version, args.topology)
+        root, existing = preflight(root, planned)
+        created = []
+        if args.apply:
+            created, existing = create_directories(root, planned)
+    except (ValueError, OSError) as error:
+        # I/O errors after preflight can leave already-created empty directories.
+        # Do not automatically delete them or claim transactional rollback.
+        raise SystemExit(f"Scaffold stopped: {error}; inspect the plan before retrying") from error
 
     mode = "APPLY" if args.apply else "PREVIEW"
     print(f"mode: {mode}")
@@ -147,7 +200,7 @@ def main() -> None:
     if args.apply:
         print(f"created: {len(created)}; already existed: {len(existing)}")
     else:
-        print("No files or directories were changed. Re-run with --apply after approval.")
+        print("No files or directories were changed. Use --apply only within the authorized scope.")
 
 
 if __name__ == "__main__":

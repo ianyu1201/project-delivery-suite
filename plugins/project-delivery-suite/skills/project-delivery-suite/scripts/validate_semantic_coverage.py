@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import re
 import json
 import sys
 from pathlib import Path
@@ -14,14 +16,6 @@ DISPOSITIONS = {"preserved", "relocated", "explicitly_superseded", "unresolved"}
 FIDELITIES = {"exact", "equivalent", "generalized", "unknown"}
 IMPACTS = {"low", "medium", "high"}
 CHANGE_POLICIES = {"frozen", "allowed", "prohibited", "open"}
-ENTRYPOINT_FIELDS = (
-    "single_active_entry",
-    "historical_deauthorized",
-    "readme_exposes_current_constraints",
-    "agents_exposes_current_constraints",
-    "project_brief_exposes_current_constraints",
-    "downstream_boundary_snapshot_attached",
-)
 BOUNDARY_FIELDS = (
     "frozen_constraints",
     "allowed_changes",
@@ -43,7 +37,7 @@ def _issue(code: str, constraint_id: str | None = None, detail: str | None = Non
     return item
 
 
-def validate(payload: dict[str, Any]) -> dict[str, Any]:
+def validate(payload: dict[str, Any], root: Path | None = None) -> dict[str, Any]:
     errors: list[dict[str, str]] = []
     warnings: list[dict[str, str]] = []
     constraints = payload.get("constraints")
@@ -61,19 +55,16 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(value, list):
             errors.append(_issue("boundary_field_missing", detail=field))
             value = []
-        boundary_sets[field] = {str(item) for item in value if _nonempty(str(item))}
+        if any(not _nonempty(item) for item in value):
+            errors.append(_issue("boundary_id_invalid", detail=field))
+        boundary_sets[field] = {item for item in value if _nonempty(item)}
 
     source_authority = boundary.get("source_authority")
     if not isinstance(source_authority, dict):
         errors.append(_issue("source_authority_missing"))
         source_authority = {}
 
-    entrypoints = payload.get("entrypoints")
-    if not isinstance(entrypoints, dict):
-        entrypoints = {}
-
     seen: set[str] = set()
-    unresolved = False
     for raw in constraints:
         if not isinstance(raw, dict):
             errors.append(_issue("constraint_not_object"))
@@ -101,14 +92,14 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
             errors.append(_issue("source_authority_not_carried", constraint_id))
 
         impact = raw.get("impact")
-        if impact not in IMPACTS:
+        if not isinstance(impact, str) or impact not in IMPACTS:
             errors.append(_issue("impact_invalid", constraint_id))
         policy = raw.get("change_policy")
-        if policy not in CHANGE_POLICIES:
+        if not isinstance(policy, str) or policy not in CHANGE_POLICIES:
             errors.append(_issue("change_policy_invalid", constraint_id))
 
         disposition = raw.get("disposition")
-        if disposition not in DISPOSITIONS:
+        if not isinstance(disposition, str) or disposition not in DISPOSITIONS:
             errors.append(_issue("disposition_invalid", constraint_id))
             continue
         if disposition in {"preserved", "relocated"}:
@@ -120,7 +111,7 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
                 if not _nonempty(target.get(field)):
                     errors.append(_issue("target_evidence_missing", constraint_id, field))
             fidelity = target.get("fidelity")
-            if fidelity not in FIDELITIES:
+            if not isinstance(fidelity, str) or fidelity not in FIDELITIES:
                 errors.append(_issue("fidelity_invalid", constraint_id))
             elif fidelity == "generalized":
                 errors.append(_issue("semantic_generalization_detected", constraint_id))
@@ -135,7 +126,6 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
                 if not _nonempty(decision.get(field)):
                     errors.append(_issue("supersession_field_missing", constraint_id, field))
         else:
-            unresolved = True
             issue = _issue("constraint_unresolved", constraint_id)
             (errors if impact == "high" else warnings).append(issue)
 
@@ -145,7 +135,7 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
                 "allowed": "allowed_changes",
                 "prohibited": "prohibited_changes",
                 "open": "open_decisions",
-            }.get(policy)
+            }.get(policy) if isinstance(policy, str) else None
             if expected_field and constraint_id not in boundary_sets[expected_field]:
                 errors.append(_issue("boundary_policy_not_carried", constraint_id, expected_field))
 
@@ -154,39 +144,112 @@ def validate(payload: dict[str, Any]) -> dict[str, Any]:
     for constraint_id in sorted(unknown_authority_ids):
         warnings.append(_issue("source_authority_without_constraint", constraint_id))
 
-    if errors:
-        semantic_status = "semantic_coverage_failed"
-    elif warnings:
-        semantic_status = "semantic_coverage_limited"
-    else:
-        semantic_status = "semantic_coverage_passed"
+    for field, ids in boundary_sets.items():
+        for constraint_id in ids - seen:
+            errors.append(_issue("boundary_unknown_id", constraint_id, field))
+        for other, other_ids in boundary_sets.items():
+            if field < other:
+                for constraint_id in ids & other_ids:
+                    errors.append(_issue("boundary_policy_conflict", constraint_id, f"{field}/{other}"))
 
-    entrypoints_complete = all(entrypoints.get(field) is True for field in ENTRYPOINT_FIELDS)
-    anti_drift = "anti-drift enforced" if semantic_status == "semantic_coverage_passed" and entrypoints_complete else "anti-drift limited"
-    # Semantic coverage is the precondition for deauthorizing history.  It must
-    # therefore be possible to pass this gate before history is deauthorized.
-    # Entry-point convergence is evaluated separately as the anti-drift gate.
-    archive_allowed = semantic_status == "semantic_coverage_passed" and not unresolved
-    if entrypoints.get("historical_deauthorized") is True and semantic_status != "semantic_coverage_passed":
-        errors.append(_issue("history_deauthorized_before_semantic_coverage"))
-        semantic_status = "semantic_coverage_failed"
-        anti_drift = "anti-drift limited"
-        archive_allowed = False
-
+    structure_status = "invalid" if errors else "limited" if warnings else "valid"
+    reference_errors: list[dict[str, str]] = []
+    if root is not None:
+        verify_references(payload, root, reference_errors)
+    reference_status = "not_checked" if root is None else "failed" if reference_errors else "verified"
+    # These are mechanical checks. Neither authored labels nor booleans establish
+    # semantic equivalence, inventory completeness, approval, or archive authority.
     return {
-        "schema_version": 1,
-        "semantic_coverage_status": semantic_status,
-        "anti_drift_status": anti_drift,
-        "archive_allowed": archive_allowed,
+        "schema_version": 2,
+        "structure_validation_status": structure_status,
+        "reference_validation_status": reference_status,
+        "semantic_review_status": "required",
+        "semantic_archive_preconditions": "pending_review" if structure_status == "valid" and reference_status == "verified" else "not_met",
         "constraint_count": len(seen),
-        "errors": errors,
+        "errors": errors + reference_errors,
         "warnings": warnings,
     }
+
+
+def pinned_file(root: Path, record: Any) -> str:
+    """Verify a pinned UTF-8 source inside root. This does not authenticate its author."""
+    if not isinstance(record, dict) or not _nonempty(record.get("file")):
+        raise ValueError("file reference missing")
+    relative = Path(record["file"])
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("file reference must be relative to root")
+    base = root.resolve(strict=True)
+    path = base
+    for part in relative.parts:
+        path /= part
+        if path.is_symlink():
+            raise ValueError("symlink reference rejected")
+    path.resolve(strict=True).relative_to(base)
+    digest = record.get("sha256")
+    if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise ValueError("sha256 pin missing or invalid")
+    data = path.read_bytes()
+    if hashlib.sha256(data).hexdigest() != digest:
+        raise ValueError("sha256 pin mismatch")
+    return data.decode("utf-8")
+
+
+def verify_references(payload: dict[str, Any], root: Path, errors: list[dict[str, str]]) -> None:
+    """Check references against a separately reviewed, pinned constraint inventory."""
+    def read(record: Any, label: str, excerpt: Any = None) -> str | None:
+        try:
+            text = pinned_file(root, record)
+            if excerpt is not None and (not _nonempty(excerpt) or excerpt not in text):
+                raise ValueError("excerpt not found")
+            return text
+        except (OSError, ValueError, UnicodeError) as error:
+            errors.append(_issue("reference_invalid", detail=f"{label}: {error}"))
+            return None
+
+    items = payload.get("constraints", [])
+    if not isinstance(items, list):
+        items = []
+    inventory_text = read(payload.get("inventory"), "inventory")
+    if inventory_text is not None:
+        try:
+            inventory = json.loads(inventory_text)
+            ids = inventory["constraint_ids"]
+            sources = inventory["sources"]
+            if not isinstance(ids, list) or not ids or any(not _nonempty(i) for i in ids) or len(set(ids)) != len(ids):
+                raise ValueError("inventory must contain unique constraint IDs")
+            if not isinstance(sources, list) or not sources:
+                raise ValueError("inventory sources missing")
+            actual = {item.get("id") for item in items if isinstance(item, dict) and _nonempty(item.get("id"))}
+            if set(ids) != actual:
+                raise ValueError("constraint IDs do not match the pinned inventory")
+            pinned_sources = set()
+            for source in sources:
+                read(source, "inventory source")
+                if isinstance(source, dict) and _nonempty(source.get("file")) and _nonempty(source.get("sha256")):
+                    pinned_sources.add((source["file"], source["sha256"]))
+            for item in items:
+                source = item.get("source", {}) if isinstance(item, dict) else {}
+                if not isinstance(source, dict) or not isinstance(source.get("file"), str) or not isinstance(source.get("sha256"), str) or (source["file"], source["sha256"]) not in pinned_sources:
+                    raise ValueError("constraint source is absent from pinned inventory")
+        except (KeyError, TypeError, ValueError) as error:
+            errors.append(_issue("inventory_invalid", detail=str(error)))
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        label = str(item.get("id", "unknown"))
+        read(item.get("source"), label + " source", item.get("original_text", ""))
+        if item.get("disposition") in {"preserved", "relocated"}:
+            target = item.get("target")
+            read(target, label + " target", target.get("excerpt", "") if isinstance(target, dict) else "")
+        elif item.get("disposition") == "explicitly_superseded":
+            decision = item.get("supersession")
+            read(decision.get("evidence_ref") if isinstance(decision, dict) else None, label + " decision")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("input", type=Path, help="Structured semantic coverage JSON")
+    parser.add_argument("--root", type=Path, help="Verify pinned inventory and source/target files inside this root")
     parser.add_argument("--format", choices=("json", "markdown"), default="json")
     return parser.parse_args()
 
@@ -196,16 +259,16 @@ def main() -> int:
     try:
         payload = json.loads(args.input.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as error:
-        print(json.dumps({"semantic_coverage_status": "semantic_coverage_failed", "errors": [{"code": "input_error", "detail": str(error)}]}))
+        print(json.dumps({"schema_version": 2, "structure_validation_status": "invalid", "errors": [{"code": "input_error", "detail": str(error)}]}))
         return 1
     if not isinstance(payload, dict):
-        print(json.dumps({"semantic_coverage_status": "semantic_coverage_failed", "errors": [{"code": "input_not_object"}]}))
+        print(json.dumps({"schema_version": 2, "structure_validation_status": "invalid", "errors": [{"code": "input_not_object"}]}))
         return 1
-    result = validate(payload)
+    result = validate(payload, args.root)
     if args.format == "markdown":
-        print(f"# Semantic coverage\n\nStatus: `{result['semantic_coverage_status']}`  ")
-        print(f"Anti-drift: `{result['anti_drift_status']}`  ")
-        print(f"Archive allowed: `{str(result['archive_allowed']).lower()}`")
+        print(f"# Constraint evidence checks\n\nStructure: `{result['structure_validation_status']}`")
+        print(f"References: `{result['reference_validation_status']}`")
+        print("Semantic review: `required`; this report does not authorize archival.")
         for label in ("errors", "warnings"):
             if result[label]:
                 print(f"\n## {label.title()}")
@@ -213,7 +276,7 @@ def main() -> int:
                     print(f"- `{item['code']}` — {item.get('constraint_id') or item.get('detail') or ''}")
     else:
         print(json.dumps(result, ensure_ascii=False, sort_keys=True))
-    return 0 if result["semantic_coverage_status"] == "semantic_coverage_passed" else 1
+    return 0 if result["structure_validation_status"] == "valid" and result["reference_validation_status"] != "failed" else 1
 
 
 if __name__ == "__main__":

@@ -97,7 +97,7 @@ Use this gap check as working evidence rather than generating a permanent tracea
 
 An issue changing intended behavior must update the PRD. Implementation defects stay in the issue list. Validate fixes one independently verifiable item at a time when practical, but do not create a second task system merely for this Skill.
 
-Before executing project commands, inspect scripts and environment. Default to candidate-local lint, typecheck, tests, and builds with minimum privileges. External APIs, networked tests, shared services, and publication require separate authorization. This Skill never deploys, applies migrations, seeds/resets, changes infrastructure, or accesses shared/production databases. Use static/dry-run checks or an explicitly disposable local environment; route real delivery operations to a separate workflow.
+Before executing project commands, inspect scripts and environment. Default to candidate-local lint, typecheck, tests, and builds with minimum privileges. External APIs, networked tests, shared services, and publication require authorization covering their target and data scope; reuse existing authorization rather than requesting it again. This Skill never deploys, applies migrations, seeds/resets, changes infrastructure, or accesses shared/production databases. Use static/dry-run checks or an explicitly disposable local environment; route real delivery operations to a separate workflow.
 
 ## 6. Regenerable and sensitive data
 
@@ -133,7 +133,7 @@ The Skill may report logical and allocated estimates, generated-data paths, and 
 
 Remote recovery is optional for governance and important when local history is reduced or device-loss protection matters. Detect repository state, remote configuration, and authentication separately. Missing GitHub CLI is not proof of no account.
 
-Offer a destination once and accept a decline. Never auto-create, publish, commit, tag, upload, or push. Before treating a remote as recoverable:
+Offer a destination once and accept a decline. Do not infer remote publication from a local governance request. Reuse explicit authorization to create, publish, commit, tag, upload, or push when its destination and scope are known. Before treating a remote as recoverable:
 
 - record a source manifest and exclusion policy;
 - inspect secrets and unsuitable large data across the complete outgoing Git object graph, including all refs, tags, branches, and retained history—not only the working tree;
@@ -148,7 +148,7 @@ After authority classification and before replacing or archiving any approved so
 
 Allowed dispositions are only `preserved`, `relocated`, `explicitly_superseded`, and `unresolved`. A silent omission, newer draft, archive move, or generalized restatement is not supersession. When PRD scope is narrowed to product what/why, relocate platform, compatibility, proprietary technology, implementation, and runtime acceptance constraints to an engineering contract or ADR.
 
-Generate the downstream boundary snapshot (`frozen_constraints`, `allowed_changes`, `prohibited_changes`, `open_decisions`, `source_authority`) and validate the structured result with `validate_semantic_coverage.py`. Keep the matrix temporary unless the project already has an equivalent artifact. Any status other than `semantic_coverage_passed` blocks deauthorization, archival, downstream handoff, and `anti-drift enforced`.
+Generate the downstream boundary snapshot (`frozen_constraints`, `allowed_changes`, `prohibited_changes`, `open_decisions`, `source_authority`) and validate the structured result with `validate_semantic_coverage.py`. Keep the matrix temporary unless the project already has an equivalent artifact. The schema-v2 script only checks structure and pinned references; it never grants semantic coverage or archive permission. Complete the source-backed semantic review in `semantic-constraint-preservation.md` before recording `semantic_coverage_passed`. Any other semantic-review status blocks deauthorization, archival, downstream handoff, and `anti-drift enforced`.
 
 ## 10. Closure matrix
 

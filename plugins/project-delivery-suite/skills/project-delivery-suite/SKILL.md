@@ -1,6 +1,6 @@
 ---
 name: project-delivery-suite
-description: 面向非专业开发者和 AI 协作团队的项目交付与版本治理单一入口；内部路由项目启动、PRD、设计与工程合同、Codex 阶段会话、开发与独立验收，以及多版本 PRD/Issue/完整代码整合、语义硬约束保真、下一完整版本和全部前序归档。Use when starting or taking over a project, creating a new project/version conversation, rescuing AI-built work, reconciling historical versions, preventing requirement drift, or deciding whether a candidate is ready to approve and archive. Start read-only, preserve approved constraints unless explicitly superseded, and never upload, delete, deploy, or access production automatically.
+description: 面向非专业开发者和 AI 协作团队的项目交付与版本治理单一入口；内部路由项目启动、PRD、设计与工程合同、Codex 阶段会话、开发与独立验收，以及多版本 PRD/Issue/完整代码整合、语义硬约束保真、下一完整版本和全部前序归档。Use when starting or taking over a project, creating a new project/version conversation, rescuing AI-built work, reconciling historical versions, preventing requirement drift, or deciding whether a candidate is ready to approve and archive. Honor existing authorization, preserve approved constraints unless explicitly superseded, and keep external actions within their authorized scope.
 ---
 
 # Project Delivery Suite
@@ -11,8 +11,8 @@ description: 面向非专业开发者和 AI 协作团队的项目交付与版本
 
 始终执行：
 
-1. 先识别项目、版本拓扑、当前阶段和权限，再提出流程；Skill 调用默认只授权读取。
-2. 写入、创建会话、移动历史、提交、发布或外部操作前，说明精确范围、路径、排除项、验证和回滚，并取得相应授权。
+1. 先识别项目、当前目标和既有授权。单独调用 Skill 且未提出具体执行目标时先只读；用户已明确要求实现、修复或按批准方案继续时，在已有范围内连续完成。
+2. 授权随会话延续；明确请求和已批准方案覆盖的普通写入、验证与提交无需重复确认。仅在权限缺失、范围/外部影响实质扩大、不可逆风险增加或业务约束冲突时，说明具体差异并询问。会话创建与外部动作仍须有覆盖该动作的明确授权。
 3. 不把最新目录、当前代码、绿色测试、合并 PR 或候选图自动当成批准需求、完成版本或确认设计。
 4. 同一版本只维护一份现役 PRD；PRD 只回答产品 what/why，平台、兼容、实现和运行验收进入工程合同或 ADR。
 5. 旧批准硬约束只能 `preserved / relocated / explicitly_superseded / unresolved`；沉默、归档或泛化措辞都不是取代证据。
@@ -82,7 +82,7 @@ python3 <skill-dir>/scripts/audit_versions.py summary <project-root> --format ma
 python3 <skill-dir>/scripts/validate_semantic_coverage.py <coverage.json>
 ```
 
-非 `semantic_coverage_passed` 时不得去权威化旧材料、归档、发放下游启动包或报告 `anti-drift enforced`。脚本验证结构化处置证据，不负责从自然语言自动抽取语义；Agent 必须结合权威来源完成判断。
+非 `semantic_coverage_passed` 时不得去权威化旧材料、归档、发放下游启动包或报告 `anti-drift enforced`。脚本 schema v2 仅输出结构和引用检查状态；返回码 0 不等于语义通过。使用 --root 核验固定清单、文件哈希和摘录后，仍须按 references/semantic-constraint-preservation.md 完成清单完整性、语义及批准证据复核，才可记录 semantic_coverage_passed。
 
 ## 单一候选 PRD、Issue 和完整代码
 
@@ -112,7 +112,7 @@ python3 <skill-dir>/scripts/validate_semantic_coverage.py <coverage.json>
 ## 副作用、数据与归档门禁
 
 - 先检查项目命令；仅在确认目标的候选本地环境运行 lint/typecheck/unit/build。
-- 网络测试、外部 API、远程缓存等先说明并授权；生产迁移、部署和共享数据库操作永不在本 Skill 执行。
+- 网络测试、外部 API、远程缓存等先核对既有授权，目标或数据范围扩大时补充授权；生产迁移、部署和共享数据库操作永不在本 Skill 执行。
 - 依赖、虚拟环境、缓存、日志和可重建中间物可作为独立候选；数据库、uploads、用户数据、密钥、模型和未知数据默认受保护。
 - 新版本获批且 `semantic_coverage_passed` 后，才按项目既有归档名移动全部前序版本；任一约束无去向、被泛化、未裁决或无取代证据时报告 `archive pending`。
 - 同盘归档只整理、不释放空间；用户需要空间时自行处理归档，本 Skill 不执行删除。
