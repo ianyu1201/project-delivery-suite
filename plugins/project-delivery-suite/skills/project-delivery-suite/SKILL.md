@@ -21,6 +21,7 @@ description: 项目启动与接管、交付流程裁剪、多版本需求和代�
 
 | 当前目标 | 处理路径与参考资料 |
 |---|---|
+| 只读代码审阅或局部问题分析，无接管、版本或发布判定 | 在当前对象内完成只读审阅；先读相关源码与已有说明，只在具体问题需要时加载参考资料 |
 | 明确、局部、可逆的修复或小功能，无历史整合/重要产品决策 | 当前会话完成局部交付；[规模裁剪](references/lifecycle-and-scaling.md) |
 | 新项目、既有项目接管、多个交付阶段或高风险变化 | 项目总控；[规模与阶段](references/lifecycle-and-scaling.md)、[新手需求与范围](references/novice-intake-and-scope-control.md) |
 | 多个完整版本、PRD 冲突、下一完整候选或历史归档 | 版本治理；[治理模型](references/governance-model.md)、[模块交接](references/version-governance-coordination.md) |
@@ -30,6 +31,8 @@ description: 项目启动与接管、交付流程裁剪、多版本需求和代�
 | 验证、证据复用或独立验收 | [质量与证据](references/quality-and-evidence.md)；按风险选择检查 |
 | Git 固定点、提交与版本号 | [Git 与发布控制](references/git-and-release-control.md) |
 | 整理权威文件或目录 | [文件治理](references/artifact-and-folder-governance.md)；不为局部任务预建全套目录 |
+
+只读审阅不自动升级为项目接管或发布验收。围绕请求报告有证据的问题、影响与不确定性；缺少 Git、PRD 或治理目录本身不是功能缺陷或高优先级阻塞。只有请求或已有约束要求这些产物时才评估其缺失，不为普通审阅遍历治理参考或执行全项目盘点。
 
 ## 版本治理入口
 
